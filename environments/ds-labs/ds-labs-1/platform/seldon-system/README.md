@@ -1,0 +1,1 @@
+- `seldon-core-operator` helm charts taken from https://github.com/SeldonIO/seldon-core @ v1.6
