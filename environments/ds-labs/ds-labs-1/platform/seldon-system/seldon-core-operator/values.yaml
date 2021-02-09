@@ -2,7 +2,7 @@
 # Below are the default values when installing Seldon Core
 
 # Defaults to .Release.Namespace
-namespaceOverride: "" 
+namespaceOverride: "seldon-system" 
 
 # ## Ingress Options
 # You are able to choose between Istio and Ambassador

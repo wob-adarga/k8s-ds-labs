@@ -1,1 +1,2 @@
 - `seldon-core-operator` helm charts taken from https://github.com/SeldonIO/seldon-core @ v1.6
+- add namespace specific to ds labs deploy
