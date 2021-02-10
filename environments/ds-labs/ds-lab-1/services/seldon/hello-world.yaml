@@ -1,13 +1,28 @@
-apiVersion: v1
-kind: Pod
+# Source: seldon-single-model/templates/seldondeployment.json
+kind: SeldonDeployment
+apiVersion: machinelearning.seldon.io/v1
 metadata:
-  name: nginx
+  name: seldon-hw
   namespace: seldon
-  labels:
-    name: nginx
+  labels: {}
 spec:
-  containers:
-  - name: nginx
-    image: nginx
-    ports:
-    - containerPort: 80
+  name: seldon-hw
+  protocol: seldon
+  annotations: {}
+  predictors:
+    - name: default
+      graph:
+        name: model
+        type: MODEL
+      componentSpecs:
+        - spec:
+            containers:
+              - name: model
+                image: eu.gcr.io/adarga-workbench-dev/seldon-hw:0.0.1
+                env:
+                  - name: LOG_LEVEL
+                    value: INFO
+                resources:
+                  requests:
+                    memory: 1Mi
+      replicas: 1
