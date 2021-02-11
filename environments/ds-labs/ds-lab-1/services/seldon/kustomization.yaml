@@ -4,4 +4,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: eu.gcr.io/adarga-workbench-dev/seldon-hw
-  newName: 0.0.1
+  newName: eu.gcr.io/adarga-workbench-dev/seldon-hw
+  newTag: 0.0.1
