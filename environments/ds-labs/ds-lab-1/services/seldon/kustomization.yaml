@@ -1,0 +1,7 @@
+resources:
+- hello-world.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: eu.gcr.io/adarga-workbench-dev/seldon-hw
+  newName: 0.0.1
