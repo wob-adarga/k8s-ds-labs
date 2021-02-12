@@ -2,3 +2,7 @@ resources:
 - sentence-extraction.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+images:
+- name: eu.gcr.io/adarga-workbench-dev/ds-knowledge-store-seldon
+  newName: eu.gcr.io/adarga-workbench-dev/ds-knowledge-store-seldon
+  newTag: 1.0.0
