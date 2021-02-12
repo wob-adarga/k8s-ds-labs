@@ -21,7 +21,7 @@ spec:
         - spec:
             containers:
               - name: sentence-extraction
-                image: eu.gcr.io/adarga-workbench-dev/ds-knowledge-store-seldon:from_kustomize
+                image: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon:from_kustomize
                 env:
                   - name: LOG_LEVEL
                     value: INFO
