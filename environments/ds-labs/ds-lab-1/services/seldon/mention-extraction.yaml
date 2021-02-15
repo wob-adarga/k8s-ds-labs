@@ -1,0 +1,58 @@
+kind: SeldonDeployment
+apiVersion: machinelearning.seldon.io/v1
+metadata:
+  name: mentionextraction
+  namespace: seldon
+  labels: {}
+spec:
+  name: mentionextraction
+  protocol: seldon
+  annotations: {}
+  predictors:
+    - name: default
+      graph:
+        name: mention-extraction
+        type: MODEL
+
+      componentSpecs:
+        - spec:
+            containers:
+              - name: mention-extraction
+                image: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon:from_kustomize
+                env:
+                  - name: LOG_LEVEL
+                    value: INFO
+                  - name: MODEL_NAME
+                    value: MentionExtractor
+                  - name: MODEL_DATA
+                    value: /models/en_core_web_sm-2.3.1
+
+                volumeMounts:
+                  - mountPath: /models
+                    name: model-data
+
+            initContainers:
+              - name: spacy-initialiser
+                image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
+                imagePullPolicy: IfNotPresent
+                command:
+                  - /bin/sh
+                  - -xc
+                  - |
+                    export HOME=/tmp # to workaround privileged execution issues
+                    oras-aws-ecr-login
+                    echo "downloading model"
+                    cd /models
+                    oras pull 382855879375.dkr.ecr.eu-west-2.amazonaws.com/spacy-models/en-core-web-sm:2.3.1 --allow-all
+                    tar -xf ./weights.tar.gz --strip-components 2
+
+                    echo "done"
+
+                volumeMounts:
+                  - mountPath: /models
+                    name: model-data
+            volumes:
+              - emptyDir: {}
+                name: model-data
+
+          replicas: 1
