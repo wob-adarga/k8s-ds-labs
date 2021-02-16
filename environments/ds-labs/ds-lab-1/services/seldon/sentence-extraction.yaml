@@ -26,7 +26,12 @@ spec:
                   - name: MODEL_NAME
                     value: SentenceExtractor
                   - name: MODEL_DATA
-                    value: ./data/nltk-weights/english.pickle
+                    value: /models/english.pickle
+
+                volumeMounts:
+                  - mountPath: /models
+                    name: model-data
+
             initContainers:
               - name: nltk-initialiser
                 image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
@@ -40,6 +45,8 @@ spec:
                     echo "downloading Punkt"
                     cd /models
                     oras pull 382855879375.dkr.ecr.eu-west-2.amazonaws.com/nltk/punkt:latest --allow-all
+                    echo "downloading vocab"
+                    oras pull 382855879375.dkr.ecr.eu-west-2.amazonaws.com/nltk/english-vocab:latest --allow-all
                     echo "done"
 
                 volumeMounts:
