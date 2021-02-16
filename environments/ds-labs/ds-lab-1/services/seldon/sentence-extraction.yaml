@@ -14,9 +14,7 @@ spec:
       graph:
         name: sentence-extraction
         type: MODEL
-#        children:
-#          - name: svo-extraction-post
-#            type: MODEL
+
       componentSpecs:
         - spec:
             containers:
@@ -29,13 +27,25 @@ spec:
                     value: SentenceExtractor
                   - name: MODEL_DATA
                     value: ./data/nltk-weights/english.pickle
-#              - name: svo-extraction-post
-#                image: spacy:0.1
-#                env:
-#                  - name: LOG_LEVEL
-#                    value: INFO
-#                  - name: MODEL_NAME
-#                    value: SvoExtractionPost
+            initContainers:
+              - name: nltk-initialiser
+                image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
+                imagePullPolicy: IfNotPresent
+                command:
+                  - /bin/sh
+                  - -xc
+                  - |
+                    export HOME=/tmp # to workaround privileged execution issues
+                    oras-aws-ecr-login
+                    echo "downloading Punkt"
+                    cd /models
+                    oras pull 382855879375.dkr.ecr.eu-west-2.amazonaws.com/nltk/punkt:latest --allow-all
+                    echo "done"
+
+                volumeMounts:
+                  - mountPath: /models
+                    name: model-data
+
                 resources:
                   requests:
                     memory: 1Mi
