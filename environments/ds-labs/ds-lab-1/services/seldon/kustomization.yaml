@@ -1,5 +1,9 @@
 resources:
+- mention-extraction.yaml
+- mention-grouper.yaml
 - sentence-extraction.yaml
+- svo-extraction.yaml
+- tag-extraction.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
