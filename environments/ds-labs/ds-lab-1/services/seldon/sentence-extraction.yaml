@@ -26,7 +26,7 @@ spec:
                   - name: MODEL_NAME
                     value: SentenceExtractor
                   - name: MODEL_DATA
-                    value: /models/english.pickle
+                    value: /models/models/nltk-punkt-english/english.pickle
 
                 volumeMounts:
                   - mountPath: /models
@@ -36,6 +36,13 @@ spec:
               - name: nltk-initialiser
                 image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
                 imagePullPolicy: IfNotPresent
+                env:
+                  - name: OMWVERSION
+                    valueFrom:
+                      configMapKeyRef:
+                        name: opensource-model-weights-config
+                        key: OMWVERSION
+
                 command:
                   - /bin/sh
                   - -xc
@@ -44,7 +51,7 @@ spec:
                     oras-aws-ecr-login
                     echo "downloading Punkt"
                     cd /models
-                    oras pull 382855879375.dkr.ecr.eu-west-2.amazonaws.com/nltk/punkt:latest --allow-all
+                    oras pull 382855879375.dkr.ecr.eu-west-2.amazonaws.com/omw/nltk-punkt-english:${OMWVERSION} --allow-all
                     echo "downloading vocab"
                     oras pull 382855879375.dkr.ecr.eu-west-2.amazonaws.com/nltk/english-vocab:latest --allow-all
                     echo "done"
