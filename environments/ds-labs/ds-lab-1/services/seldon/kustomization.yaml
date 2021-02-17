@@ -7,6 +7,9 @@ resources:
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
+- name: 382855879375.dkr.ecr.eu-west-2.amazonaws.com/omw/nltk-punkt-english
+  newName: 382855879375.dkr.ecr.eu-west-2.amazonaws.com/omw/nltk-punkt-english
+  newTag: 1.1.1
 - name: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
   newName: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
   newTag: 1.0.3
