@@ -1,11 +1,12 @@
-resources:
-- mention-extraction.yaml
-- mention-grouper.yaml
-- sentence-extraction.yaml
-- svo-extraction.yaml
-- tag-extraction.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+configurations:
+- kustomizeconfig/seldondeployment.yaml
+resources:
+  - mention-extraction.yaml
+  - mention-grouper.yaml
+  - sentence-extraction.yaml
+  - svo-extraction.yaml
 images:
 - name: 382855879375.dkr.ecr.eu-west-2.amazonaws.com/omw/nltk-punkt-english
   newName: 382855879375.dkr.ecr.eu-west-2.amazonaws.com/omw/nltk-punkt-english
@@ -13,3 +14,8 @@ images:
 - name: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
   newName: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
   newTag: 1.0.3
+configMapGenerator:
+- name: opensource-model-weights-config
+  namespace: seldon
+  literals:
+  - OMWVERSION=1.2.1
