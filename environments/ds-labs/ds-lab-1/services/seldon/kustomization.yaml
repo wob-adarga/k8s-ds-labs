@@ -18,4 +18,4 @@ configMapGenerator:
 - name: opensource-model-weights-config
   namespace: seldon
   literals:
-  - OMWVERSION=1.2.1
+  - OMWVERSION=1.2.2
