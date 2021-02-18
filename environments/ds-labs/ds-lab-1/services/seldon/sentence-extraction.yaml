@@ -42,6 +42,11 @@ spec:
                       configMapKeyRef:
                         name: opensource-model-weights-config
                         key: OMWVERSION
+                  - name: AWS_ECR
+                    valueFrom:
+                      configMapKeyRef:
+                        name: opensource-model-weights-config
+                        key: AWS_ECR
 
                 command:
                   - /bin/sh
@@ -51,7 +56,7 @@ spec:
                     oras-aws-ecr-login
                     echo "downloading Punkt"
                     cd /models
-                    oras pull 382855879375.dkr.ecr.eu-west-2.amazonaws.com/omw/nltk-punkt-english:${OMWVERSION} --allow-all
+                    oras pull ${AWS_ECR}/omw/nltk-punkt-english:${OMWVERSION} --allow-all
                     echo "done"
 
                 volumeMounts:
