@@ -34,6 +34,14 @@ spec:
               - name: spacy-initialiser
                 image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
                 imagePullPolicy: IfNotPresent
+                env:
+                  - name: OMWVERSION
+                    valueFrom:
+                      configMapKeyRef:
+                        name: opensource-model-weights-config
+                        key: OMWVERSION
+
+
                 command:
                   - /bin/sh
                   - -xc
