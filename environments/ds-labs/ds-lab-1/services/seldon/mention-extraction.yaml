@@ -43,7 +43,7 @@ spec:
                     oras-aws-ecr-login
                     echo "downloading model"
                     cd /models
-                    oras pull 382855879375.dkr.ecr.eu-west-2.amazonaws.com/spacy-models/en-core-web-sm:2.3.1 --allow-all
+                    oras pull 382855879375.dkr.ecr.eu-west-2.amazonaws.com/omw/spacy-small-2-3:${OMWVERSION} --allow-all
                     tar -xf ./weights.tar.gz --strip-components 2
 
                     echo "done"
