@@ -8,14 +8,11 @@ resources:
   - sentence-extraction.yaml
   - svo-extraction.yaml
 images:
-- name: 382855879375.dkr.ecr.eu-west-2.amazonaws.com/omw/nltk-punkt-english
-  newName: 382855879375.dkr.ecr.eu-west-2.amazonaws.com/omw/nltk-punkt-english
-  newTag: 1.2.1
 - name: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
   newName: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
   newTag: 1.0.3
 configMapGenerator:
 - name: opensource-model-weights-config
   namespace: seldon
-  literals:
-  - OMWVERSION=1.2.2
+  envs:
+  - opensource-model-weights.properties
