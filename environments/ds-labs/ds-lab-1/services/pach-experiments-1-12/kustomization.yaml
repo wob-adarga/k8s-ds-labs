@@ -4,7 +4,7 @@ resources:
   - pachctl-internal-role.yaml
   - word-count-pipeline.yaml
 configMapGenerator:
-- name: hello-world-pipeline-config
+- name: word-count-pipeline-config
   namespace: pach-experiments-1-12
   files:
-  - hello-world-pipeline.json
+  - word-count-pipeline.json
