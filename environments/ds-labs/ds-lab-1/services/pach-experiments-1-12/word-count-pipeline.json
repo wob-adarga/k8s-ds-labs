@@ -4,13 +4,13 @@
   },
   "metadata": {
     "annotations": {
-        "wordcount-model-version": "1.3.0"
+        "wordcount-model-version": "1.3.1"
     }
   },
   "description": "simple wordcount pipeline",
   "transform": {
     "cmd": [ "python3", "WordCountPipeline.py"],
-    "image": "eu.gcr.io/adarga-docker/adarga-hello-ml-world-wordcount-pipeline:1.3.0"
+    "image": "eu.gcr.io/adarga-docker/adarga-hello-ml-world-wordcount-pipeline:1.3.1"
   },
   "input": {
     "pfs": {
