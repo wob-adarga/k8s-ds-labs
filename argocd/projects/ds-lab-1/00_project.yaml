@@ -6,9 +6,11 @@ metadata:
   name: ds-lab-1
   namespace: argocd
 spec:
-  description: currently manages seldon related resources in the ds-lab-1 env
+  description: currently manages ML/DS related resources in the ds-lab-1 env
   destinations:
   - namespace: seldon
+    server: https://9E36A890F633CBF28D33FB1C7F732949.gr7.eu-west-2.eks.amazonaws.com
+  - namespace: pach-experiments-1-12
     server: https://9E36A890F633CBF28D33FB1C7F732949.gr7.eu-west-2.eks.amazonaws.com
   sourceRepos:
     - git@github.com:Adarga-Ltd/k8s-ds-labs.git
