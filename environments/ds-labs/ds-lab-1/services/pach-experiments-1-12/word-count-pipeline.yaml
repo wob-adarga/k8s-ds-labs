@@ -12,11 +12,9 @@ spec:
         image: pachyderm/pachctl:1.12.3
         imagePullPolicy: Always
         command:
-          - pachctl
-          - update
-          - pipeline
-          - -f
-          - /config/word-count-pipeline.json
+          - sh
+          - -c
+          - 'pachctl config update --namespace pach-experiments-1-12 && pachctl update pipeline -f /config/word-count-pipeline.json'
         resources:
           requests:
             cpu: 10m
