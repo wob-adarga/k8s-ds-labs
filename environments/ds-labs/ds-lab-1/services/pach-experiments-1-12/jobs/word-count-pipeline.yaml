@@ -14,7 +14,7 @@ spec:
         command:
           - sh
           - -c
-          - 'pachctl config update context --namespace pach-experiments-1-12 && pachctl update pipeline -f /config/word-count-pipeline.json --reprocess'
+          - 'pachctl config update context --namespace pach-experiments-1-12 && pachctl update pipeline -f /config/word-count-pipeline.json --reprocess && sleep 20 && pachctl start pipeline word-count'
         resources:
           requests:
             cpu: 10m
