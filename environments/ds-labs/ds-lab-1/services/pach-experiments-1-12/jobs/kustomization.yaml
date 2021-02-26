@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- word-count-pipeline.yaml
+nameSuffix: -0.0.0
+configMapGenerator:
+- files:
+  - word-count-pipeline.json
+  name: word-count-pipeline-config
+  namespace: pach-experiments-1-12
