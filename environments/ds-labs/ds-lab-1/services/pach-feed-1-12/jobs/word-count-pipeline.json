@@ -4,13 +4,13 @@
   },
   "metadata": {
     "annotations": {
-        "wordcount-model-version": "1.3.17"
+        "wordcount-model-version": "1.3.18"
     }
   },
   "description": "simple wordcount pipeline",
   "transform": {
     "cmd": [ "python3", "WordCountPipeline.py"],
-    "image": "eu.gcr.io/adarga-docker/adarga-hello-ml-world-wordcount-pipeline:1.3.17"
+    "image": "eu.gcr.io/adarga-docker/adarga-hello-ml-world-wordcount-pipeline:1.3.18"
   },
   "input": {
     "pfs": {
@@ -19,8 +19,5 @@
       "branch": "master"
     }
   },
-  "enable_stats": false,
-  "egress": {
-    "URL": "s3://adarga-ds-lab-1-pachyderm-egress/wordcount"
-  }
+  "enable_stats": true
 }
