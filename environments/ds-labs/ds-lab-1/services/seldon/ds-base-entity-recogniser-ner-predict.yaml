@@ -1,0 +1,35 @@
+kind: SeldonDeployment
+apiVersion: machinelearning.seldon.io/v1
+metadata:
+  name: ds-base-entity-recogniser-ner-predict
+  namespace: seldon
+  labels: {}
+spec:
+  name: ds-base-entity-recogniser-ner-predict
+  protocol: seldon
+  annotations: {}
+  predictors:
+    - name: default
+      graph:
+        name: ds-base-entity-recogniser-ner-predict
+        type: MODEL
+
+      componentSpecs:
+        - spec:
+            containers:
+              - name: ds-base-entity-recogniser-ner-predict
+                image: eu.gcr.io/adarga-docker/ds-base-entity-recogniser-ner-predict:from_kustomize
+                env:
+                  - name: LOG_LEVEL
+                    value: INFO
+                  - name: TRACING
+                    value: '1'
+                  - name: JAEGER_AGENT_HOST
+                    value: jaeger-agent.observability.svc.cluster.local
+                  - name: JAEGER_AGENT_PORT
+                    value: '5775'
+                  - name: JAEGER_SAMPLER_TYPE
+                    value: const
+                  - name: JAEGER_SAMPLER_PARAM
+                    value: '1'
+      replicas: 1
