@@ -22,7 +22,7 @@ spec:
                 env:
                   - name: TRANSFORMERS_CACHE
                     value: "/tmp/.transformers_cache"
-                  - name: LOGGING_CONF
+                  - name: LOGGING_CONFIG
                     value: "/app/logging.conf"
                   - name: LOG_LEVEL
                     value: INFO
