@@ -13,7 +13,7 @@ images:
 - name: eu.gcr.io/adarga-docker/adarga-hello-ml-world-wordcount
   newTag: 1.3.23
 - name: eu.gcr.io/adarga-docker/ds-base-entity-recogniser-ner-predict
-  newTag: 1.0.2
+  newTag: 1.0.3
 - name: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
   newName: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
   newTag: 1.0.3
