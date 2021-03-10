@@ -20,6 +20,8 @@ spec:
               - name: ds-base-entity-recogniser-ner-predict
                 image: eu.gcr.io/adarga-docker/ds-base-entity-recogniser-ner-predict:from_kustomize
                 env:
+                  - name: TRANSFORMERS_CACHE
+                    value: "/tmp/.transformers_cache"
                   - name: LOG_LEVEL
                     value: INFO
                   - name: TRACING
