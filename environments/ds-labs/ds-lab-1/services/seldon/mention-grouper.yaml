@@ -59,7 +59,7 @@ spec:
                     echo "downloading model"
                     cd /models
                     oras pull ${AWS_ECR}/omw/spacy-small-2-3:${OMWVERSION} --allow-all
-                    tar -xf ./weights.tar.gz --strip-components 2
+                    tar -xf models/spacy-small-2-3/weights.tar.gz --strip-components 2
                     echo "done"
 
                 volumeMounts:
