@@ -15,7 +15,7 @@ spec:
         type: MODEL
         parameters:
           - name: "name"
-            value: "/model/models/tner-xlm-roberta-base-ontonotes5/"
+            value: "/models/models/tner-xlm-roberta-base-ontonotes5/"
             type: STRING
 
       componentSpecs:
