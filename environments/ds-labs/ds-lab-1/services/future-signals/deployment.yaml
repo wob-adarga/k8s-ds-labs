@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: future-signals-app
+  namespace: future-signals
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: future-signals
+  template:
+    metadata:
+      labels:
+        app: future-signals
+      annotations:
+        prometheus.io/scrape: 'true'
+    spec:
+      containers:
+        - name: webserver
+          image: eu.gcr.io/adarga-workbench-dev/fut-sig-streamlit-docker-trial:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8501
+          resources:
+            limits:
+              cpu: 10m
+              memory: 0.2Gi
+#         livenessProbe:
+#           httpGet:
+#             port: http
+#             path: /healthz
+#           failureThreshold: 1
+#           periodSeconds: 10
+#         startupProbe:
+#           httpGet:
+#             path: /healthz
+#             port: http
+#           failureThreshold: 30
+#           periodSeconds: 10

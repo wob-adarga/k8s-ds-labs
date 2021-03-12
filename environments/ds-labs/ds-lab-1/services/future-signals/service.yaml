@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: future-signals
+  namespace: future-signals
+spec:
+  selector:
+    app: future-signals
+  type: NodePort
+  ports:
+    - name: http
+      port: 8501
+      targetPort: http
