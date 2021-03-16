@@ -18,24 +18,29 @@ spec:
     spec:
       containers:
         - name: webserver
-          image: eu.gcr.io/adarga-workbench-dev/fut-sig-streamlit-docker-trial:latest
+          image: eu.gcr.io/adarga-workbench-dev/fut-sig-streamlit-docker-trial:olly-2
           imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 8501
+          env:
+            - name: STREAMLIT_BROWSER_SERVER_ADDRESS
+              value: future-signals.ds-lab-1.datascience.adarga.dev
+            - name: STREAMLIT_BROWSER_SERVER_PORT
+              value: "443"
           resources:
             limits:
-              cpu: 10m
-              memory: 0.2Gi
-#         livenessProbe:
-#           httpGet:
-#             port: http
-#             path: /healthz
-#           failureThreshold: 1
-#           periodSeconds: 10
-#         startupProbe:
-#           httpGet:
-#             path: /healthz
-#             port: http
-#           failureThreshold: 30
-#           periodSeconds: 10
+              cpu: 50m
+              memory: 0.5Gi
+          livenessProbe:
+            httpGet:
+              port: http
+              path: /healthz
+            failureThreshold: 1
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            failureThreshold: 6
+            periodSeconds: 10
