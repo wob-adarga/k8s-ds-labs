@@ -29,9 +29,9 @@ spec:
             - name: STREAMLIT_BROWSER_SERVER_PORT
               value: "443"
           resources:
-            limits:
+            requests:
               cpu: 50m
-              memory: 0.5Gi
+              memory: 2Gi
           livenessProbe:
             httpGet:
               port: http
