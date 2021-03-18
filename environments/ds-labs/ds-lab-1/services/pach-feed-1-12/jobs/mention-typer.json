@@ -8,7 +8,7 @@
     "memory": "1G"
   },
   "transform": {
-    "cmd": [ "python3", "-m", "service", "mention-typer" ],
+    "cmd": [ "python3", "-m", "service", "mention-typing" ],
     "image": "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.2.0",
     "env": {
       "SERVICE_URL": "http://mention-typer-default-mention-typer.seldon.svc.cluster.local:9000/api/v1.0/predictions"
