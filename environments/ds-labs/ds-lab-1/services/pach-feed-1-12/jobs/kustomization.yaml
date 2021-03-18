@@ -10,21 +10,21 @@ nameSuffix: 1.3.23
 configMapGenerator:
 - files:
   - clean-documents.json
-  name: clean-documents.yaml
+  name: clean-documents
   namespace: pach-feed-1-12
 - files:
   - mention-extraction.json
-  name: mention-extraction.yaml
+  name: mention-extraction
   namespace: pach-feed-1-12
 - files:
   - mention-grouper.json
-  name: mention-grouper.yaml
+  name: mention-grouper
   namespace: pach-feed-1-12
 - files:
   - sentence-extraction.json
-  name: sentence-extraction.yaml
+  name: sentence-extraction
   namespace: pach-feed-1-12
 - files:
   - svo-extraction.json
-  name: svo-extraction.yaml
+  name: svo-extraction
   namespace: pach-feed-1-12
