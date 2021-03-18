@@ -5,7 +5,7 @@
   "description": "Subject-Verb-Object extraction based on noun chunks.",
   "transform": {
     "cmd": [ "python3", "-m", "service", "svo-extraction"],
-    "image": "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.1.1",
+    "image": "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.2.0",
     "env": {
       "SERVICE_URL": "http://svoextraction-default.seldon.svc.cluster.local:8000/api/v1.0/predictions"
     }
