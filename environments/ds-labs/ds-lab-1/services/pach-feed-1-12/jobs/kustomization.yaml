@@ -1,10 +1,30 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- word-count-pipeline.yaml
+ - clean-documents.yaml
+ - mention-extraction.yaml
+ - mention-grouper.yaml
+ - sentence-extraction.yaml
+ - svo-extraction.yaml
 nameSuffix: 1.3.23
 configMapGenerator:
 - files:
-  - word-count-pipeline.json
-  name: word-count-pipeline-config
+  - clean-documents.json
+  name: clean-documents.yaml
+  namespace: pach-feed-1-12
+- files:
+  - mention-extraction.json
+  name: mention-extraction.yaml
+  namespace: pach-feed-1-12
+- files:
+  - mention-grouper.json
+  name: mention-grouper.yaml
+  namespace: pach-feed-1-12
+- files:
+  - sentence-extraction.json
+  name: sentence-extraction.yaml
+  namespace: pach-feed-1-12
+- files:
+  - svo-extraction.json
+  name: svo-extraction.yaml
   namespace: pach-feed-1-12
