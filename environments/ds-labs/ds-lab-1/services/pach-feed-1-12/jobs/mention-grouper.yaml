@@ -14,7 +14,7 @@ spec:
         command:
           - sh
           - -c
-          - 'pachctl config update context --namespace pach-feed-1-12 && pachctl update pipeline -f /config/mention-grouper-pipeline.json'
+          - 'pachctl config update context --namespace pach-feed-1-12 && pachctl update pipeline -f /config/mention-grouper.json'
         resources:
           requests:
             cpu: 10m
