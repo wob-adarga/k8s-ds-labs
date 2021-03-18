@@ -1,0 +1,23 @@
+{
+  "pipeline": {
+    "name": "svo-extraction"
+  },
+  "description": "Subject-Verb-Object extraction based on noun chunks.",
+  "transform": {
+    "cmd": [ "python3", "-m", "service", "svo-extraction"],
+    "image": "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.1.1",
+    "env": {
+      "SERVICE_URL": "http://svoextraction-default.seldon.svc.cluster.local:8000/api/v1.0/predictions"
+    }
+  },
+  "input": {
+    "pfs": {
+      "repo": "sentence-extraction",
+      "glob": "/*/*"
+    }
+  },
+  "enable_stats": false,
+  "egress": {
+    "URL": "s3://adarga-ds-lab-1-pachyderm-egress/svo-extraction"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "pipeline": {
+    "name": "clean-ingress-feed"
+  },
+  "description": "Clean ingress documents.",
+  "transform": {
+    "cmd": [ "python3", "-m", "service", "clean-documents"],
+    "image": "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.1.1"
+  },
+  "input": {
+    "pfs": {
+      "repo": "ingress-dev-1-spout",
+      "glob": "/*/*",
+      "branch": "master"
+    }
+  },
+  "enable_stats": true
+}

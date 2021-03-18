@@ -1,0 +1,28 @@
+{
+  "pipeline": {
+    "name": "sentence-extraction"
+  },
+  "description": "Sentence extraction based on NLTK punkt.",
+  "resource_requests": {
+    "cpu": 1,
+    "memory": "1G"
+  },
+  "transform": {
+    "cmd": [ "python3", "-m", "service", "sentence-extraction" ],
+    "image": "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.1.1",
+    "env": {
+      "SERVICE_URL": "http://sentence-extraction-default-sentence-extraction.seldon.svc.cluster.local:9000/api/v1.0/predictions"
+    }
+  },
+  "input": {
+    "pfs": {
+      "repo": "clean-ingress-feed",
+      "glob": "/*/*",
+      "branch": "master"
+    }
+  },
+  "enable_stats": false,
+  "egress": {
+    "URL": "s3://adarga-ds-lab-1-pachyderm-egress/feed-sentence-extraction"
+  }
+}
