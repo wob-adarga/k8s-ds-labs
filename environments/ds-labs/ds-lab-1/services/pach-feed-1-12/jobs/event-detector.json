@@ -5,9 +5,10 @@
     "description": "Event typer based on lookup table.",
     "transform": {
       "cmd": [ "python3", "-m", "service", "event-detector"],
-      "image": "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.2.0",
+      "image": "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.3.8",
       "env": {
-        "SERVICE_URL": "http://event-detector-default-event-detector.seldon.svc.cluster.local:9000/api/v1.0/predictions"
+        "SERVICE_URL_BASE": "http://event-detector-default.seldon.svc.cluster.local:8000",
+        "SERVICE_ENDPOINT": "api/v1.0/predictions"
       }
     },
     "input": {
