@@ -1,0 +1,6 @@
+nameReference:
+- kind: ConfigMap
+  version: v1
+  fieldSpecs:
+  - path: spec/predictors/componentSpecs/spec/initContainers/env/valueFrom/configMapKeyRef/name
+    kind: SeldonDeployment
