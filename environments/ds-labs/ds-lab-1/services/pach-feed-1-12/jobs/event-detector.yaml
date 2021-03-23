@@ -1,0 +1,31 @@
+---
+    apiVersion: batch/v1
+    kind: Job
+    metadata:
+      name: event-detector-pipeline
+      namespace: pach-feed-1-12
+    spec:
+      template:
+        spec:
+          containers:
+          - name: pachctl-internal
+            image: pachyderm/pachctl:1.12.3
+            imagePullPolicy: Always
+            command:
+              - sh
+              - -c
+              - 'pachctl config update context --namespace pach-feed-1-12 && pachctl update pipeline -f /config/event-detector.json'
+            resources:
+              requests:
+                cpu: 10m
+                memory: 1500Ki
+            volumeMounts:
+              - name: pipe-config
+                mountPath: /config
+          restartPolicy: Never
+          serviceAccount: internal-pachctl
+          volumes:
+            - name: pipe-config
+              configMap:
+                name: event-detector-pipeline-config
+    

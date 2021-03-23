@@ -8,6 +8,9 @@ resources:
 - mention-grouper.yaml
 - sentence-extraction.yaml
 - svo-extraction.yaml
+- adarga-hello-ml-world-wordcount.yaml
+- ds-base-entity-recogniser-ner-predict.yaml
+- event-detector.yaml
 images:
 - name: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
   newName: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
