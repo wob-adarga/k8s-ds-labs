@@ -9,7 +9,7 @@
   },
   "transform": {
     "cmd": [ "python3", "-m", "service", "sentence-extraction" ],
-    "image": "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.5.0",
+    "image": "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.6.0",
     "env": {
       "SERVICE_URL_BASE": "http://sentence-extraction-default.seldon.svc.cluster.local:8000",
       "SERVICE_ENDPOINT": "api/v1.0/predictions"
