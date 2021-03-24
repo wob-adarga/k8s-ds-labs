@@ -1,15 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-configurations:
-- kustomizeconfig/seldondeployment.yaml
 resources:
 - mention-typer.yaml
 - mention-extraction.yaml
 - mention-grouper.yaml
 - sentence-extraction.yaml
 - svo-extraction.yaml
-- adarga-hello-ml-world-wordcount.yaml
-- ds-base-entity-recogniser-ner-predict.yaml
 - event-detector.yaml
 images:
 - name: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
