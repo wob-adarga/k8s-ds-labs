@@ -1,0 +1,41 @@
+---
+apiVersion: kubernetes-client.io/v1
+kind: ExternalSecret
+metadata:
+  name: ks-dashboard-auth0
+  namespace: ds-apps
+spec:
+  backendType: secretsManager
+  roleArn: arn:aws:iam::975704811528:role/AdargaEKSDatascienceDs-Lab-1ReadSecretsRole
+  data:
+    - key: auth0/ks-dashboard.ds-lab-1.datascience.adarga.dev/webapp
+      name: clientID
+      property: client-id
+    - key: auth0/ks-dashboard.ds-lab-1.datascience.adarga.dev/webapp
+      name: clientSecret
+      property: client-secret
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ks-dashboard-alb
+  namespace: ds-apps
+  annotations:
+    kubernetes.io/ingress.class: alb
+    external-dns.alpha.kubernetes.io/hostname: ks-dashboard.ds-lab-1.datascience.adarga.dev
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/group.name: ds-lab-1-apps
+    alb.ingress.kubernetes.io/auth-type: oidc
+    alb.ingress.kubernetes.io/auth-idp-oidc: '{"issuer":"https://adarga-internal.eu.auth0.com/","authorizationEndpoint":"https://adarga-internal.eu.auth0.com/authorize","tokenEndpoint":"https://adarga-internal.eu.auth0.com/oauth/token","userInfoEndpoint":"https://adarga-internal.eu.auth0.com/userinfo","secretName":"ks-dashboard-auth0"}'
+    alb.ingress.kubernetes.io/auth-scope: 'email openid'
+    alb.ingress.kubernetes.io/auth-on-unauthenticated-request: authenticate
+spec:
+  rules:
+    - host: ks-dashboard.ds-lab-1.datascience.adarga.dev
+      http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: ks-dashboard
+              servicePort: http

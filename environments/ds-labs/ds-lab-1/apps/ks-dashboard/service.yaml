@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ks-dashboard
+  namespace: ds-apps
+spec:
+  selector:
+    app: ks-dashboard
+  type: NodePort
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
