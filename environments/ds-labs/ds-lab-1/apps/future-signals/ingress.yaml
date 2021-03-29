@@ -3,7 +3,7 @@ apiVersion: kubernetes-client.io/v1
 kind: ExternalSecret
 metadata:
   name: future-signals-auth0
-  namespace: future-signals
+  namespace: ds-apps
 spec:
   backendType: secretsManager
   roleArn: arn:aws:iam::975704811528:role/AdargaEKSDatascienceDs-Lab-1ReadSecretsRole
@@ -18,8 +18,8 @@ spec:
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: alb-ingress
-  namespace: future-signals
+  name: future-signals-alb
+  namespace: ds-apps
   annotations:
     kubernetes.io/ingress.class: alb
     external-dns.alpha.kubernetes.io/hostname: future-signals.ds-lab-1.datascience.adarga.dev

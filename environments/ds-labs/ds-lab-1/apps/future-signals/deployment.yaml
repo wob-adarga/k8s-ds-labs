@@ -2,8 +2,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: future-signals-app
-  namespace: future-signals
+  name: future-signals
+  namespace: ds-apps
 spec:
   replicas: 1
   selector:
@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: webserver
-          image: eu.gcr.io/adarga-workbench-dev/fut-sig-streamlit-docker-trial:olly-2
+          image: eu.gcr.io/adarga-workbench-dev/fut-sig-streamlit-docker:latest
           imagePullPolicy: Always
           ports:
             - name: http
