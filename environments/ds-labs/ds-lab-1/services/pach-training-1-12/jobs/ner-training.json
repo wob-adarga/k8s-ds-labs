@@ -1,0 +1,33 @@
+{
+    "pipeline": {
+        "name": "ner-training"
+    },
+    "description": "NER training.",
+    "resource_limits": {
+        "memory": "15G",
+        "gpu": {
+            "type": "nvidia.com/gpu",
+            "number": 1
+        }
+    },
+    "transform": {
+        "cmd": [ "python3", "train_model.py" ],
+        "image": "eu.gcr.io/adarga-docker/ds-custom-entity-recogniser:from_kustomize",
+        "env": {
+            "PFS_DIR": "/pfs",
+            "INPUT_DIR": "ner-training-data",
+            "OUTPUT_DIR": "out"
+        }
+    },
+    "input": {
+        "pfs": {
+            "repo": "ner-training-data",
+            "glob": "/",
+            "branch": "master"
+        }
+    },
+    "enable_stats": false,
+    "egress": {
+        "URL": "s3://adarga-ds-lab-1-pachyderm-egress/feed-ner-training"
+    }
+}

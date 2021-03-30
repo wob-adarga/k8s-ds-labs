@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ner-training.yaml
+nameSuffix: 0.0.1
+configMapGenerator:
+- files:
+  - ner-training.json
+  name: ner-training-pipeline-config
+  namespace: pach-training-1-12
+images:
+- name: eu.gcr.io/adarga-docker/ds-custom-entity-recogniser
+  newTag: 1.0.1
