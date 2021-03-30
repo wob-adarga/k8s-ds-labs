@@ -1,0 +1,30 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ner-training-pipeline
+  namespace: pach-training-1-12
+spec:
+  template:
+    spec:
+      containers:
+      - name: pachctl-internal
+        image: pachyderm/pachctl:1.12.3
+        imagePullPolicy: Always
+        command:
+          - sh
+          - -c
+          - 'pachctl config update context --namespace pach-training-1-12 && pachctl update pipeline --reprocess -f /config/ner-training.json'
+        resources:
+          requests:
+            cpu: 10m
+            memory: 1500Ki
+        volumeMounts:
+          - name: pipe-config
+            mountPath: /config
+      restartPolicy: Never
+      serviceAccount: internal-pachctl
+      volumes:
+        - name: pipe-config
+          configMap:
+            name: ner-training-pipeline-config
