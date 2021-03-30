@@ -1,0 +1,28 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pachctl-fsck-fix
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      serviceAccountName: internal-pachctl
+      containers:
+      - name: pachctl
+        image: pachyderm/pachctl:1.12.5
+        imagePullPolicy: Always
+        env:
+          - name: NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+        command:
+          - /bin/sh
+          - -cx
+          - |
+            pachctl config update context --namespace $NAMESPACE
+            pachctl version
+            date
+            pachctl fsck --fix
+            date
