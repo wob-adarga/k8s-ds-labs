@@ -128,20 +128,6 @@ subjects:
   namespace: pach-training-1-12
 
 ---
-allowVolumeExpansion: true
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  labels:
-    app: etcd
-    suite: pachyderm
-  name: etcd-storage-class
-  namespace: pach-training-1-12
-parameters:
-  type: gp2
-provisioner: kubernetes.io/aws-ebs
-
----
 apiVersion: v1
 kind: Service
 metadata:
