@@ -3,6 +3,8 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: pachctl-fsck-fix
+  annotations:
+    argocd.argoproj.io/hook: Skip
 spec:
   template:
     spec:
