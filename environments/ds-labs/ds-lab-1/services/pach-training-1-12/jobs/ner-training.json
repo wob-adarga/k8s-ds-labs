@@ -28,6 +28,6 @@
     },
     "enable_stats": false,
     "egress": {
-        "URL": "s3://adarga-ds-lab-1-pachyderm-egress/feed-ner-training"
+        "URL": "s3://adarga-ds-lab-1-pachyderm-egress/training-custom-ner"
     }
 }
