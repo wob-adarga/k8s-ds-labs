@@ -12,7 +12,7 @@
     },
     "transform": {
         "cmd": [ "python3", "train_model.py" ],
-        "image": "eu.gcr.io/adarga-docker/ds-custom-entity-recogniser:1.0.7",
+        "image": "eu.gcr.io/adarga-docker/ds-custom-entity-recogniser:1.0.8",
         "env": {
             "PFS_DIR": "/pfs",
             "INPUT_DIR": "ner-training-data",
