@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ./knowledge-store
   - ./base-entity-recogniser
+  - ./text-classification
 configurations:
 - kustomizeconfig/seldondeployment.yaml
 configMapGenerator:
