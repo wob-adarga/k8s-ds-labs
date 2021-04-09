@@ -20,6 +20,8 @@ spec:
               - name: zero-shot-predict
                 image: eu.gcr.io/adarga-docker/ds-text-classification-zero_shot_predict:from_kustomize
                 env:
+                  - name: TRANSFORMERS_CACHE
+                    value: "/tmp/.transformers_cache"
                   - name: LOG_LEVEL
                     value: INFO
                   # - name: MODEL_DATA
