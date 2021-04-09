@@ -6,4 +6,3 @@ images:
 - name: eu.gcr.io/adarga-docker/ds-text-classification-zero_shot_predict
   newName: eu.gcr.io/adarga-docker/ds-text-classification-zero_shot_predict
   newTag: 1.0.0
-nameSuffix: "1_0_0"
