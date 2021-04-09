@@ -31,7 +31,7 @@ spec:
                   - mountPath: /models
                     name: model-data
 
-             initContainers:
+            initContainers:
                - name: bart-initialiser
                  image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
                  imagePullPolicy: IfNotPresent
