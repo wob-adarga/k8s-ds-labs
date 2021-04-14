@@ -5,6 +5,7 @@ resources:
   - ./base-entity-recogniser
   - ./text-classification
   - ./future-references
+  - ./doc2vec
 configurations:
 - kustomizeconfig/seldondeployment.yaml
 configMapGenerator:
