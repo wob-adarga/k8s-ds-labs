@@ -4,6 +4,7 @@ resources:
   - ./knowledge-store
   - ./base-entity-recogniser
   - ./text-classification
+  - ./future-references
 configurations:
 - kustomizeconfig/seldondeployment.yaml
 configMapGenerator:
