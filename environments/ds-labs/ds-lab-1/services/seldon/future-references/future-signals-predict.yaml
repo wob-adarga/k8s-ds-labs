@@ -13,6 +13,16 @@ spec:
       graph:
         name: future-signals-predict
         type: MODEL
+        parameters:
+          - name: 'base_model'
+            value: 'distilbert-base-uncased'
+            type: STRING
+          - name: 'model_data'
+            value: '/models/models/future-references'
+            type: STRING
+          - name: 'labels'
+            value: '["past", "ongoing", "future"]'
+            type: STRING
 
       componentSpecs:
         - spec:
@@ -24,23 +34,16 @@ spec:
                     value: "/tmp/.transformers_cache"
                   - name: LOG_LEVEL
                     value: INFO
-                  - name: MODEL_DATA
-                    value: /models/models/facebook-bart-large-mnli
 
                 volumeMounts:
                   - mountPath: /models
                     name: model-data
 
             initContainers:
-               - name: bart-initialiser
+               - name: distilbert-initialiser
                  image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
                  imagePullPolicy: IfNotPresent
                  env:
-                   - name: OMWVERSION
-                     valueFrom:
-                       configMapKeyRef:
-                         name: opensource-model-weights-config
-                         key: OMWVERSION
                    - name: AWS_ECR
                      valueFrom:
                        configMapKeyRef:
@@ -54,8 +57,7 @@ spec:
                      oras-aws-ecr-login
                      echo "downloading model"
                      cd /models
-                     oras pull ${AWS_ECR}/omw/facebook-bart-large-mnli:${OMWVERSION} --allow-all
-
+                     oras pull ${AWS_ECR}/amw/future-references:v1 --allow-all
                      echo "done"
 
                  volumeMounts:
