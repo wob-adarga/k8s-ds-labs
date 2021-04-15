@@ -10,5 +10,5 @@ resources:
 images:
 - name: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
   newName: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
-  newTag: 1.13.0
-nameSuffix: 1-13-0
+  newTag: 1.14.0
+nameSuffix: 1-14-0
