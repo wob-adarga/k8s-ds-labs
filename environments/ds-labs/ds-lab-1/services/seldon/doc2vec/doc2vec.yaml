@@ -36,10 +36,16 @@ spec:
                 image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
                 imagePullPolicy: IfNotPresent
                 env:
-                  - name: AMWVERSION
-                    value: 1.0
+                  - name: DOC2VEC_VERSION
+                    valueFrom:
+                      configMapKeyRef:
+                        name: adarga-model-weights-config
+                        key: DOC2VEC_VERSION
                   - name: AWS_ECR
-                    value: 382855879375.dkr.ecr.eu-west-2.amazonaws.com
+                    valueFrom:
+                      configMapKeyRef:
+                        name: adarga-model-weights-config
+                        key: AWS_ECR
                 command:
                   - /bin/sh
                   - -xc
@@ -48,7 +54,9 @@ spec:
                     oras-aws-ecr-login
                     echo "downloading model"
                     cd /models
-                    oras pull ${AWS_ECR}/amw/doc2vec/:v1.0 --allow-all
+                    oras pull ${AWS_ECR}/amw/doc2vec/:${DOC2VEC_VERSION} --allow-all
+                    tar -xf doc2vec_dm_small_230620.tar.gz
+                    rm doc2vec_dm_small_230620.tar.gz
                     echo "done"
 
                 volumeMounts:
