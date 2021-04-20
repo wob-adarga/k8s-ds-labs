@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
 - doc2vec.yaml
 images:
-- name: eu.gcr.io/adarga-docker/document-doc2vec-component-doc2vec
-  newName: eu.gcr.io/adarga-docker/document-doc2vec-component-doc2vec
+- name: eu.gcr.io/adarga-docker/document-doc2vec-component-doc2vec-predict
+  newName: eu.gcr.io/adarga-docker/document-doc2vec-component-doc2vec-predict
   newTag: 1.0.0
 nameSuffix: 1-0-0
