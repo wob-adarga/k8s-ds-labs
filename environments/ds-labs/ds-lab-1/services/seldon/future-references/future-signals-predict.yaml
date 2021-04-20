@@ -59,7 +59,7 @@ spec:
                     oras-aws-ecr-login
                     echo "downloading model"
                     cd /models
-                    oras pull ${AWS_ECR}/amw/future-references:v1 --allow-all
+                    oras pull ${AWS_ECR}/amw/future-references:v2.0.1 --allow-all
                     oras pull ${AWS_ECR}/omw/distilbert-base-uncased:${OMWVERSION} --allow-all
                     echo "done"
 
