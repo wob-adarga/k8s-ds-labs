@@ -5,5 +5,4 @@ resources:
 images:
 - name: eu.gcr.io/adarga-docker/ds-future-references-future_signals_predict
   newName: eu.gcr.io/adarga-docker/ds-future-references-future_signals_predict
-  newTag: 1.0.2
-nameSuffix: "1_0_2"
+  newTag: 1.0.0
