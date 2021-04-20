@@ -8,7 +8,7 @@ resources:
 - sentence-extraction.yaml
 - svo-extraction.yaml
 - event-detector.yaml
-nameSuffix: 1.9.0
+nameSuffix: 1.1.0
 configMapGenerator:
 - files:
   - clean-documents.json
