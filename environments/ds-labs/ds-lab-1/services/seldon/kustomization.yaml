@@ -5,10 +5,15 @@ resources:
   - ./base-entity-recogniser
   - ./text-classification
   - ./future-references
+  - ./doc2vec
 configurations:
 - kustomizeconfig/seldondeployment.yaml
 configMapGenerator:
-- envs:
+- name: opensource-model-weights-config
+  envs:
   - opensource-model-weights.properties
-  name: opensource-model-weights-config
+  namespace: seldon
+- name: adarga-model-weights-config
+  envs:
+  - adarga-model-weights.properties
   namespace: seldon

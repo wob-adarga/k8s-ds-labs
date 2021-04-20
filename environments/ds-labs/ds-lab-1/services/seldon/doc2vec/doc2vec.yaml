@@ -1,0 +1,70 @@
+kind: SeldonDeployment
+apiVersion: machinelearning.seldon.io/v1
+metadata:
+  name: doc2vec
+  namespace: seldon
+  labels: {}
+spec:
+  name: doc2vec
+  protocol: seldon
+  annotations: {}
+  predictors:
+    - name: default
+      graph:
+        name: doc2vec
+        type: MODEL
+        parameters:
+          - name: 'model_data'
+            value: '/models/models/doc2vec'
+            type: STRING
+
+      componentSpecs:
+        - spec:
+            containers:
+              - name: doc2vec
+                image: eu.gcr.io/adarga-docker/document-doc2vec-component-doc2vec-predict:from_kustomize
+                env:
+                  - name: LOG_LEVEL
+                    value: INFO
+
+                volumeMounts:
+                  - mountPath: /models
+                    name: model-data
+
+            initContainers:
+              - name: doc2vec-initialiser
+                image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
+                imagePullPolicy: IfNotPresent
+                env:
+                  - name: DOC2VEC_VERSION
+                    valueFrom:
+                      configMapKeyRef:
+                        name: adarga-model-weights-config
+                        key: DOC2VEC_VERSION
+                  - name: AWS_ECR
+                    valueFrom:
+                      configMapKeyRef:
+                        name: adarga-model-weights-config
+                        key: AWS_ECR
+                command:
+                  - /bin/sh
+                  - -xc
+                  - |
+                    export HOME=/tmp # to workaround privileged execution issues
+                    oras-aws-ecr-login
+                    echo "downloading model"
+                    cd /models
+                    oras pull ${AWS_ECR}/amw/doc2vec/:${DOC2VEC_VERSION} --allow-all
+                    tar -xf doc2vec_dm_small_230620.tar.gz
+                    rm doc2vec_dm_small_230620.tar.gz
+                    echo "done"
+
+                volumeMounts:
+                  - mountPath: /models
+                    name: model-data
+
+            volumes:
+              - emptyDir: {}
+                name: model-data
+
+          replicas: 1
