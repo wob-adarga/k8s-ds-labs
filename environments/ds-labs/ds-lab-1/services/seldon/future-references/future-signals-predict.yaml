@@ -18,7 +18,7 @@ spec:
             value: '/models/models/distilbert-base-uncased'
             type: STRING
           - name: 'model_data'
-            value: '/models/models/future-references'
+            value: '/models/DistilBERT-1.0.pt'
             type: STRING
 
       componentSpecs:
