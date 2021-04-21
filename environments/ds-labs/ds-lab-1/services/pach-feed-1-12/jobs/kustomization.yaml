@@ -8,6 +8,7 @@ resources:
 - sentence-extraction.yaml
 - svo-extraction.yaml
 - event-detector.yaml
+- zero-shot-classifier.yaml
 nameSuffix: 1.1.0
 configMapGenerator:
 - files:
@@ -37,4 +38,8 @@ configMapGenerator:
 - files:
   - event-detector.json
   name: event-detector-pipeline-config
+  namespace: pach-feed-1-12
+- files:
+  - zero-shot-classifier.json
+  name: zero-shot-classifier-pipeline-config
   namespace: pach-feed-1-12
