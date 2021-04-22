@@ -2,11 +2,6 @@
   "pipeline": {
     "name": "future-signals-classifier"
   },
-  "metadata": {
-    "annotations": {
-        "future-signals-classifier-model-version": "1.1.1"
-    }
-  },
   "description": "future signals classification pipeline",
   "transform": {
     "cmd": [ "python3", "FutureSignalsClassifierPipeline.py"],
@@ -14,9 +9,9 @@
     "env": {
       "SERVICE_URL_BASE": "http://future-signals-predict-default.seldon.svc.cluster.local:8000",
       "SERVICE_ENDPOINT": "api/v1.0/predictions",
-      "SENTENCES_REPO": "pfs/sentence-extraction",
-      "EVENTS_REPO": "pfs/event-detector",
-      "OUTPUT_REPO": "pfs/out"
+      "SENTENCES_REPO": "/pfs/sentence-extraction",
+      "EVENTS_REPO": "/pfs/event-detector",
+      "OUTPUT_REPO": "/pfs/out"
     }
   },
   "input": {
