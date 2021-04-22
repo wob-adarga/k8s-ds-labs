@@ -9,7 +9,7 @@ resources:
 - svo-extraction.yaml
 - event-detector.yaml
 - zero-shot-classifier.yaml
-nameSuffix: 1.1.0
+nameSuffix: 1.1.1
 configMapGenerator:
 - files:
   - clean-documents.json
