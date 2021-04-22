@@ -1,0 +1,41 @@
+{
+  "pipeline": {
+    "name": "future-signals-classifier"
+  },
+  "description": "future signals classification pipeline",
+  "transform": {
+    "cmd": [ "python3", "FutureSignalsClassifierPipeline.py"],
+    "image": "eu.gcr.io/adarga-docker/ds-future-references-future_signals_pipeline:1.1.0",
+    "env": {
+      "SERVICE_URL_BASE": "http://future-signals-predict-default.seldon.svc.cluster.local:8000",
+      "SERVICE_ENDPOINT": "api/v1.0/predictions",
+      "SENTENCES_REPO": "/pfs/sentence-extraction",
+      "EVENTS_REPO": "/pfs/event-detector",
+      "OUTPUT_REPO": "/pfs/out"
+    }
+  },
+  "input": {
+      "join": [
+          {
+              "pfs": {
+                  "name": "sentence-extraction",
+                  "repo": "sentence-extraction",
+                  "glob": "/*/*",
+                  "branch": "master"
+              }
+          },
+          {
+              "pfs": {
+                  "name": "event-detector",
+                  "repo": "event-detector",
+                  "glob": "/*/*",
+                  "branch": "master"
+              }
+          }
+      ]
+  },
+  "enable_stats": false,
+  "egress": {
+    "URL": "s3://adarga-ds-lab-1-pachyderm-egress/feed-future-signals-classifier"
+  }
+}
