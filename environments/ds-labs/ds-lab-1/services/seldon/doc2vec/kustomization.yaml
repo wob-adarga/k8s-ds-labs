@@ -6,4 +6,3 @@ images:
 - name: eu.gcr.io/adarga-docker/doc2vec-predict
   newName: eu.gcr.io/adarga-docker/doc2vec-predict
   newTag: 1.0.2
-nameSuffix: "1_0_2"
