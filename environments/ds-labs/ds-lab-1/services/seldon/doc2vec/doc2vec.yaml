@@ -15,7 +15,7 @@ spec:
         type: MODEL
         parameters:
           - name: 'model_data'
-            value: '/models/models/doc2vec'
+            value: '/models/models/doc2vec_dm_small_230620.mdl'
             type: STRING
 
       componentSpecs:
