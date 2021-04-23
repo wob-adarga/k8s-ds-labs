@@ -1,0 +1,26 @@
+{
+  "pipeline": {
+    "name": "doc2vec"
+  },
+  "description": "doc2vec pipeline",
+  "transform": {
+    "cmd": [ "python3", "Doc2VecPipeline.py"],
+    "image": "eu.gcr.io/adarga-docker/doc2vec-pipeline:1.0.0",
+    "env": {
+      "SERVICE_URL_BASE": "http://doc2vec-default.seldon.svc.cluster.local:8000",
+      "SERVICE_ENDPOINT": "api/v1.0/predictions",
+      "INPUT_REPO": "pfs/clean-ingress-feed"
+    }
+  },
+  "input": {
+    "pfs": {
+      "repo": "clean-ingress-feed",
+      "glob": "/*/*",
+      "branch": "master"
+    }
+  },
+  "enable_stats": false,
+  "egress": {
+    "URL": "s3://adarga-ds-lab-1-pachyderm-egress/feed-doc2vec"
+  }
+}
