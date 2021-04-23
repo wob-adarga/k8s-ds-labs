@@ -2,10 +2,15 @@
   "pipeline": {
     "name": "doc2vec"
   },
+  "metadata": {
+    "annotations": {
+        "doc2vec-model-version": "1.0.2"
+    }
+  },
   "description": "doc2vec pipeline",
   "transform": {
     "cmd": [ "python3", "Doc2VecPipeline.py"],
-    "image": "eu.gcr.io/adarga-docker/doc2vec-pipeline:1.0.0",
+    "image": "eu.gcr.io/adarga-docker/doc2vec-pipeline:1.0.2",
     "env": {
       "SERVICE_URL_BASE": "http://doc2vec-default.seldon.svc.cluster.local:8000",
       "SERVICE_ENDPOINT": "api/v1.0/predictions",
