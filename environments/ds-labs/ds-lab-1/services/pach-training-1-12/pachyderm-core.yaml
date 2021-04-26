@@ -47,6 +47,7 @@ rules:
   resources:
   - replicationcontrollers
   - services
+  - replicationcontrollers/scale
   verbs:
   - get
   - list
@@ -262,35 +263,35 @@ metadata:
 spec:
   ports:
   - name: api-grpc-port
-    nodePort: 30850
+    nodePort: 30650
     port: 650
     targetPort: 0
   - name: trace-port
-    nodePort: 30851
+    nodePort: 30651
     port: 651
     targetPort: 0
   - name: api-http-port
-    nodePort: 30852
+    nodePort: 30652
     port: 652
     targetPort: 0
   - name: saml-port
-    nodePort: 30854
+    nodePort: 30654
     port: 654
     targetPort: 0
   - name: oidc-port
-    nodePort: 30857
+    nodePort: 30657
     port: 657
     targetPort: 0
   - name: api-git-port
-    nodePort: 30855
+    nodePort: 30655
     port: 655
     targetPort: 0
   - name: s3gateway-port
-    nodePort: 30800
+    nodePort: 30600
     port: 600
     targetPort: 0
-  - name: prometheus-metrics
-    nodePort: 30856
+  - name: prom-metrics
+    nodePort: 30656
     port: 656
     protocol: TCP
     targetPort: 656
@@ -362,16 +363,16 @@ spec:
           value: AMAZON
         - name: STORAGE_HOST_PATH
         - name: WORKER_IMAGE
-          value: pachyderm/worker:1.12.5
+          value: pachyderm/worker:1.13.0
         - name: IMAGE_PULL_SECRET
         - name: WORKER_SIDECAR_IMAGE
-          value: pachyderm/pachd:1.12.5
+          value: pachyderm/pachd:1.13.0
         - name: WORKER_IMAGE_PULL_POLICY
           value: IfNotPresent
         - name: WORKER_SERVICE_ACCOUNT
           value: pachyderm-worker
         - name: PACHD_VERSION
-          value: 1.12.5
+          value: 1.13.0
         - name: METRICS
           value: "true"
         - name: LOG_LEVEL
@@ -398,7 +399,7 @@ spec:
         - name: EXPOSE_OBJECT_API
           value: "false"
         - name: CLUSTER_DEPLOYMENT_ID
-          value: f74d78e3dd984babaa1734fdb14089e6
+          value: 513fbf2b5f8e42b9a5959871d1b8814c
         - name: REQUIRE_CRITICAL_SERVERS_ONLY
           value: "false"
         - name: PACHD_POD_NAME
@@ -594,7 +595,7 @@ spec:
           value: "100"
         - name: STORAGE_V2
           value: "false"
-        image: pachyderm/pachd:1.12.5
+        image: pachyderm/pachd:1.13.0
         imagePullPolicy: IfNotPresent
         name: pachd
         ports:
@@ -617,6 +618,9 @@ spec:
           protocol: TCP
         - containerPort: 657
           name: oidc-port
+          protocol: TCP
+        - containerPort: 656
+          name: prom-metrics
           protocol: TCP
         readinessProbe:
           exec:
@@ -656,11 +660,11 @@ metadata:
 spec:
   ports:
   - name: dash-http
-    nodePort: 30280
+    nodePort: 30080
     port: 8080
     targetPort: 0
   - name: grpc-proxy-http
-    nodePort: 30281
+    nodePort: 30081
     port: 8081
     targetPort: 0
   selector:
