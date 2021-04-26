@@ -9,6 +9,8 @@ resources:
 - svo-extraction.yaml
 - event-detector.yaml
 - zero-shot-classifier.yaml
+- doc2vec.yaml
+- future-signals-classifier.yaml
 nameSuffix: 1.0.3
 configMapGenerator:
 - files:
@@ -42,4 +44,12 @@ configMapGenerator:
 - files:
   - zero-shot-classifier.json
   name: zero-shot-classifier-pipeline-config
+  namespace: pach-feed-1-12
+- files:
+  - doc2vec.json
+  name: doc2vec-pipeline-config
+  namespace: pach-feed-1-12
+- files:
+  - future-signals-classifier.json
+  name: future-signals-classifier-pipeline-config
   namespace: pach-feed-1-12
