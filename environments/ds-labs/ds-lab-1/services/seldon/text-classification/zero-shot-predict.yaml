@@ -26,6 +26,14 @@ spec:
             containers:
               - name: zero-shot-predict
                 image: eu.gcr.io/adarga-docker/ds-text-classification-zero_shot_predict:from_kustomize
+                resources:
+                  limits:
+                    memory: 15G
+                    nvidia.com/gpu: 1
+                  requests:
+                    cpu: 0
+                    memory: 64M
+                    nvidia.com/gpu: 1
                 env:
                   - name: TRANSFORMERS_CACHE
                     value: "/tmp/.transformers_cache"
