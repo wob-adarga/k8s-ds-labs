@@ -13,6 +13,13 @@ spec:
       graph:
         name: zero-shot-predict
         type: MODEL
+        parameters:
+          - name: 'model_name_or_path'
+            value: '/models/models/facebook-bart-large-mnli'
+            type: STRING
+          - name: 'device'
+            value: '-1'
+            type: STRING
 
       componentSpecs:
         - spec:
@@ -24,8 +31,6 @@ spec:
                     value: "/tmp/.transformers_cache"
                   - name: LOG_LEVEL
                     value: INFO
-                  - name: MODEL_DATA
-                    value: /models/models/facebook-bart-large-mnli
 
                 volumeMounts:
                   - mountPath: /models
