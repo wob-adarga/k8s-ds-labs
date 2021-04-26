@@ -263,35 +263,35 @@ metadata:
 spec:
   ports:
   - name: api-grpc-port
-    nodePort: 30650
+    nodePort: 30850
     port: 650
     targetPort: 0
   - name: trace-port
-    nodePort: 30651
+    nodePort: 30851
     port: 651
     targetPort: 0
   - name: api-http-port
-    nodePort: 30652
+    nodePort: 30852
     port: 652
     targetPort: 0
   - name: saml-port
-    nodePort: 30654
+    nodePort: 30854
     port: 654
     targetPort: 0
   - name: oidc-port
-    nodePort: 30657
+    nodePort: 30857
     port: 657
     targetPort: 0
   - name: api-git-port
-    nodePort: 30655
+    nodePort: 30855
     port: 655
     targetPort: 0
   - name: s3gateway-port
-    nodePort: 30600
+    nodePort: 30800
     port: 600
     targetPort: 0
   - name: prom-metrics
-    nodePort: 30656
+    nodePort: 30856
     port: 656
     protocol: TCP
     targetPort: 656
@@ -660,11 +660,11 @@ metadata:
 spec:
   ports:
   - name: dash-http
-    nodePort: 30080
+    nodePort: 30280
     port: 8080
     targetPort: 0
   - name: grpc-proxy-http
-    nodePort: 30081
+    nodePort: 30281
     port: 8081
     targetPort: 0
   selector:
