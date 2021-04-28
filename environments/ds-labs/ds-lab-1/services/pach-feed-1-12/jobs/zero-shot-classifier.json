@@ -2,37 +2,29 @@
   "pipeline": {
     "name": "zero-shot-classifier"
   },
+  "metadata": {
+    "annotations": {
+        "zero-shot-classifier-model-version": "1.2.2"
+    }
+  },
   "description": "zero shot text classification pipeline",
   "transform": {
     "cmd": [ "python3", "ZeroShotClassifierPipeline.py"],
-    "image": "eu.gcr.io/adarga-docker/ds-text-classification-zero_shot_pipeline:1.1.0",
+    "image": "eu.gcr.io/adarga-docker/ds-text-classification-zero-shot-pipeline:1.2.2",
     "env": {
       "SERVICE_URL_BASE": "http://zero-shot-predict-default.seldon.svc.cluster.local:8000",
       "SERVICE_ENDPOINT": "api/v1.0/predictions",
-      "LABELS_PATH": "/pfs/text-classification-labels/PMESII_labels.json",
-      "INPUT_REPO": "/pfs/clean-ingress-feed",
-      "OUTPUT_REPO": "/pfs/out"
+      "LABELS_REPO": "pfs/text-classification-labels/PMESII_labels.json",
+      "INPUT_REPO": "pfs/clean-ingress-feed",
+      "OUTPUT_REPO": "pfs/out"
     }
   },
   "input": {
-      "join": [
-          {
-              "pfs": {
-                  "name": "clean-ingress-feed",
-                  "repo": "clean-ingress-feed",
-                  "glob": "/*/*",
-                  "branch": "master"
-              }
-          },
-          {
-              "pfs": {
-                  "name": "text-classification-labels",
-                  "repo": "text-classification-labels",
-                  "glob": "/",
-                  "branch": "master"
-              }
-          }
-      ]
+    "pfs": {
+      "repo": "clean-ingress-feed",
+      "glob": "/*/*",
+      "branch": "master"
+    }
   },
   "enable_stats": false,
   "egress": {
