@@ -7,7 +7,7 @@
     "cmd": [ "python3", "FutureSignalsClassifierPipeline.py"],
     "image": "eu.gcr.io/adarga-docker/ds-future-references-future_signals_pipeline:1.1.1",
     "env": {
-      "SERVICE_URL_BASE": "http://future-signals-predict-default.seldon.svc.cluster.local:8000",
+      "SERVICE_URL_BASE": "http://future-signals-predict1-16-1-default.seldon.svc.cluster.local:8000",
       "SERVICE_ENDPOINT": "api/v1.0/predictions",
       "SENTENCES_REPO": "/pfs/sentence-extraction",
       "EVENTS_REPO": "/pfs/event-detector",
