@@ -11,7 +11,7 @@ resources:
 - zero-shot-classifier.yaml
 - doc2vec.yaml
 - future-signals-classifier.yaml
-nameSuffix: 1.0.4
+nameSuffix: 1.0.5
 configMapGenerator:
 - files:
   - clean-documents.json

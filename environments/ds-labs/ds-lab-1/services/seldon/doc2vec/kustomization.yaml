@@ -5,4 +5,4 @@ resources:
 images:
 - name: eu.gcr.io/adarga-docker/doc2vec-predict
   newName: eu.gcr.io/adarga-docker/doc2vec-predict
-  newTag: 1.0.4
+  newTag: 1.0.5
