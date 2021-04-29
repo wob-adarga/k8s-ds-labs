@@ -31,7 +31,7 @@ spec:
                     memory: 15G
                     nvidia.com/gpu: 1
                   requests:
-                    cpu: 0.1
+                    cpu: 0
                     memory: 15G
                     nvidia.com/gpu: 1
                 env:
