@@ -4,13 +4,13 @@
   },
   "metadata": {
     "annotations": {
-        "zero-shot-classifier-model-version": "1.2.2"
+        "zero-shot-classifier-model-version": "1.2.3"
     }
   },
   "description": "zero shot text classification pipeline",
   "transform": {
     "cmd": [ "python3", "ZeroShotClassifierPipeline.py"],
-    "image": "eu.gcr.io/adarga-docker/ds-text-classification-zero-shot-pipeline:1.2.2",
+    "image": "eu.gcr.io/adarga-docker/ds-text-classification-zero-shot-pipeline:1.2.3",
     "env": {
       "SERVICE_URL_BASE": "http://zero-shot-predict-default.seldon.svc.cluster.local:8000",
       "SERVICE_ENDPOINT": "api/v1.0/predictions",
