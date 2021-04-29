@@ -18,7 +18,7 @@ spec:
             value: '/models/models/facebook-bart-large-mnli'
             type: STRING
           - name: 'device'
-            value: '-1'
+            value: '0'
             type: STRING
 
       componentSpecs:
@@ -28,11 +28,11 @@ spec:
                 image: eu.gcr.io/adarga-docker/ds-text-classification-zero_shot_predict:from_kustomize
                 resources:
                   limits:
-                    memory: 6G
+                    memory: 15G
                     nvidia.com/gpu: 1
                   requests:
-                    cpu: 0
-                    memory: 64M
+                    cpu: 0.1
+                    memory: 15G
                     nvidia.com/gpu: 1
                 env:
                   - name: TRANSFORMERS_CACHE
