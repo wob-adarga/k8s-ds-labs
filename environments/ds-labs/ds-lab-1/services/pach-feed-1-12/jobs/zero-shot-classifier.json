@@ -4,19 +4,19 @@
   },
   "metadata": {
     "annotations": {
-        "zero-shot-classifier-model-version": "1.2.3"
+        "zero-shot-classifier-model-version": "1.2.4"
     }
   },
   "description": "zero shot text classification pipeline",
   "transform": {
     "cmd": [ "python3", "ZeroShotClassifierPipeline.py"],
-    "image": "eu.gcr.io/adarga-docker/ds-text-classification-zero-shot-pipeline:1.2.3",
+    "image": "eu.gcr.io/adarga-docker/ds-text-classification-zero_shot_pipeline:1.2.4",
     "env": {
-      "SERVICE_URL_BASE": "http://zero-shot-predict1-16-1-default.seldon.svc.cluster.local:8000",
+      "SERVICE_URL_BASE": "http://zero-shot-predict-default.seldon.svc.cluster.local:8000",
       "SERVICE_ENDPOINT": "api/v1.0/predictions",
-      "LABELS_REPO": "pfs/text-classification-labels/PMESII_labels.json",
-      "INPUT_REPO": "pfs/clean-ingress-feed",
-      "OUTPUT_REPO": "pfs/out"
+      "LABELS_REPO": "/pfs/text-classification-labels/PMESII_labels.json",
+      "INPUT_REPO": "/pfs/clean-ingress-feed",
+      "OUTPUT_REPO": "/pfs/out"
     }
   },
   "input": {

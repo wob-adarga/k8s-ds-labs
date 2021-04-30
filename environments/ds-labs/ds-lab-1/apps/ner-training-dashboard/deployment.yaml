@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ner-training-dashboard
-  namespace: ds-apps
+  namespace: pach-training-1-12
 spec:
   replicas: 1
   selector:
@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: webserver
-          image: nginxdemos/nginx-hello:latest
+          image: 382855879375.dkr.ecr.eu-west-2.amazonaws.com/dashboards/ner-training-dashboard:0.0.0
           imagePullPolicy: Always
           ports:
             - name: http
@@ -27,3 +27,30 @@ spec:
             requests:
               cpu: 50m
               memory: 2Gi
+          env:
+          - name: PGHOST
+            valueFrom:
+              configMapKeyRef:
+                key: DB_CONN
+                name: benchmark-db-credentials
+          - name: PGPORT
+            valueFrom:
+              configMapKeyRef:
+                key: DB_PORT
+                name: benchmark-db-credentials
+          - name: PGUSER
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_USER
+                name: benchmark-db-credentials
+          - name: PGDATABASE
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_DB
+                name: benchmark-db-credentials
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_PASSWORD
+                name: benchmark-db-credentials
+      

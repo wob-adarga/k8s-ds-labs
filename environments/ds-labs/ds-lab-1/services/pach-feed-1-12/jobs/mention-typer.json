@@ -9,9 +9,9 @@
   },
   "transform": {
     "cmd": [ "python3", "-m", "service", "mention-typing" ],
-    "image": "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.16.1",
+    "image": "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.17.0",
     "env": {
-      "SERVICE_URL_BASE": "http://mention-typer1-16-1-default.seldon.svc.cluster.local:8000",
+      "SERVICE_URL_BASE": "http://mention-typer1-17-0-default.seldon.svc.cluster.local:8000",
       "SERVICE_ENDPOINT": "api/v1.0/predictions"
     }
   },

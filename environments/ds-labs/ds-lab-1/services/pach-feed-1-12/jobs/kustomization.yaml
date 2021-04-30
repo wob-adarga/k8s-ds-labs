@@ -8,10 +8,11 @@ resources:
 - sentence-extraction.yaml
 - svo-extraction.yaml
 - event-detector.yaml
+- event-grouper.yaml
 - zero-shot-classifier.yaml
 - doc2vec.yaml
 - future-signals-classifier.yaml
-nameSuffix: 1.2.3
+nameSuffix: 1.2.4
 configMapGenerator:
 - files:
   - clean-documents.json
@@ -40,6 +41,10 @@ configMapGenerator:
 - files:
   - event-detector.json
   name: event-detector-pipeline-config
+  namespace: pach-feed-1-12
+- files:
+  - event-grouper.json
+  name: event-grouper-pipeline-config
   namespace: pach-feed-1-12
 - files:
   - zero-shot-classifier.json
