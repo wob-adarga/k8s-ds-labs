@@ -3,7 +3,7 @@ apiVersion: kubernetes-client.io/v1
 kind: ExternalSecret
 metadata:
   name: ner-training-dashboard-auth0
-  namespace: ds-apps
+  namespace: pach-training-1-12
 spec:
   backendType: secretsManager
   roleArn: arn:aws:iam::975704811528:role/AdargaEKSDatascienceDs-Lab-1ReadSecretsRole
@@ -19,7 +19,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ner-training-dashboard-alb
-  namespace: ds-apps
+  namespace: pach-training-1-12
   annotations:
     kubernetes.io/ingress.class: alb
     external-dns.alpha.kubernetes.io/hostname: ner-training-dashboard.ds-lab-1.datascience.adarga.dev
