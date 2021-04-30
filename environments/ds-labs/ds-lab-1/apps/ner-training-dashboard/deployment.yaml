@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ner-training-dashboard
+  namespace: ds-apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ner-training-dashboard
+  template:
+    metadata:
+      labels:
+        app: ner-training-dashboard
+      annotations:
+        prometheus.io/scrape: 'true'
+    spec:
+      containers:
+        - name: webserver
+          image: nginxdemos/nginx-hello:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            requests:
+              cpu: 50m
+              memory: 2Gi
