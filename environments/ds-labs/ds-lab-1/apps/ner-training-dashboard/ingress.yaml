@@ -35,10 +35,10 @@ spec:
     - host: ner-training-dashboard.ds-lab-1.datascience.adarga.dev
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /*
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: ner-training-dashboard
                 port:
-                  number: 8080
+                  name: http
