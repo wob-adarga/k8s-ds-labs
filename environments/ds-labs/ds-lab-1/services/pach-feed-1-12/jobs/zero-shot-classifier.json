@@ -12,7 +12,7 @@
     "cmd": [ "python3", "ZeroShotClassifierPipeline.py"],
     "image": "eu.gcr.io/adarga-docker/ds-text-classification-zero-shot-pipeline:1.2.3",
     "env": {
-      "SERVICE_URL_BASE": "http://zero-shot-predict1-16-1-default.seldon.svc.cluster.local:8000",
+      "SERVICE_URL_BASE": "http://zero-shot-predict1-17-0-default.seldon.svc.cluster.local:8000",
       "SERVICE_ENDPOINT": "api/v1.0/predictions",
       "LABELS_REPO": "pfs/text-classification-labels/PMESII_labels.json",
       "INPUT_REPO": "pfs/clean-ingress-feed",
