@@ -7,6 +7,7 @@ resources:
 - sentence-extraction.yaml
 - svo-extraction.yaml
 - event-detector.yaml
+- event-grouper.yaml
 images:
 - name: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
   newName: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
