@@ -5,6 +5,9 @@ resources:
 - pachyderm-core.yaml
 - pachctl-internal-role.yaml
 - pachd-internal-lb.yaml
+- deployment.yaml
+- ingress.yaml
+- service.yaml
 - ./jobs
 images:
 - name: eu.gcr.io/adarga-docker/ds-custom-entity-recogniser-dashboard

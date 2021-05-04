@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: webserver
-          image: 382855879375.dkr.ecr.eu-west-2.amazonaws.com/dashboards/ner-training-dashboard:0.0.0
+          image: eu.gcr.io/adarga-docker/ds-custom-entity-recogniser-dashboard:from_kustomize
           imagePullPolicy: Always
           ports:
             - name: http
@@ -53,4 +53,3 @@ spec:
               secretKeyRef:
                 key: POSTGRES_PASSWORD
                 name: benchmark-db-credentials
-      
