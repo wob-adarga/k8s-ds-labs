@@ -1,8 +1,0 @@
-         oidc:
-           certArn: arn:aws:acm:eu-west-2:382855879375:certificate/a1adf355-561f-4ddd-8bea-9096296b4cfd
-           oAuthClientId: ezifkxUYLwMFZJKDExwf381muH3kVb36
-           oAuthClientSecret: xhd6fIOd344wyAm7pObMSa3X2VNnYtw9awUuQKNK5pVK4oXuoEzawZtfaIXbgVD7
-           oidcAuthorizationEndpoint: https://adarga-internal.eu.auth0.com/authorize
-           oidcIssuer: https://adarga-internal.eu.auth0.com/
-           oidcTokenEndpoint: https://adarga-internal.eu.auth0.com/oauth/token
-           oidcUserInfoEndpoint: https://adarga-internal.eu.auth0.com/userinfo
