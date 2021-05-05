@@ -4,5 +4,6 @@ resources:
   - pachyderm-core.yaml
   - pachctl-internal-role.yaml
   - pachd-internal-lb.yaml
+  - pachyderm-controller.yaml
   - ./jobs
   - ./pipelines
