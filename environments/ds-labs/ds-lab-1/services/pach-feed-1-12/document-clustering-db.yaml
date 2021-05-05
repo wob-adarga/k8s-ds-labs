@@ -1,0 +1,16 @@
+---
+apiVersion: kci.rocks/v1alpha1
+kind: Database
+metadata:
+  name: document-clustering-db
+  namespace: pach-feed-1-12
+spec:
+  secretName: document-clustering-db-credentials
+  instance: pdb-instance
+  deletionProtected: true
+  backup:
+    enable: false
+    cron: 0 0 * * *
+  extensions:
+    - uuid-ossp
+    - plpgsql
