@@ -7,8 +7,3 @@ images:
   newName: eu.gcr.io/adarga-docker/document-clustering-document-cluster-predict
   newTag: 1.0.0
 nameSuffix: 1-0-0
-configMapGenerator:
-- name: document-clustering-model-config
-  envs:
-  - document-clustering-config.properties
-  namespace: seldon
