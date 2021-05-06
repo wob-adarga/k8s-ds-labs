@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pachyderm-controller
+  labels:
+    function: controller
+    app: pachyderm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pachyderm
+      function: controller
+  template:
+    metadata:
+      labels:
+        app: pachyderm
+        function: controller
+    spec:
+      containers:
+      - name: pachyderm-controller
+        image: eu.gcr.io/adarga-docker/qd-pipeline-controller:from_kustomize
+        env:
+          - name: PACHYDERM_ADDRESS
+            valueFrom:
+              configMapKeyRef:
+                name:
+                key: PACHYDERM_ADDRESS
+          - name: NAMESPACE
+            valueFrom:
+              configMapKeyRef:
+                name:
+                key: NAMESPACE
