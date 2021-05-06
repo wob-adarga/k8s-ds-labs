@@ -53,7 +53,7 @@ spec:
       serviceAccount: qd-pipeline-controller
       containers:
         - name: controller
-          image: 382855879375.dkr.ecr.eu-west-2.amazonaws.com/infra/qd-pipeline-controller:0.0.1a
+          image: 382855879375.dkr.ecr.eu-west-2.amazonaws.com/infra/qd-pipeline-controller:from_kustomize
           imagePullPolicy: Always
           env:
             - name: PACHYDERM_ADDRESS
