@@ -18,7 +18,7 @@ spec:
         function: controller
     spec:
       containers:
-      - name: nginx
+      - name: pachyderm-controller
         image: eu.gcr.io/adarga-docker/qd-pipeline-controller:from_kustomize
         env:
           - name: PACHYDERM_ADDRESS
