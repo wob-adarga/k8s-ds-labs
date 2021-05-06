@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- document-cluster-predict.yaml
+images:
+- name: eu.gcr.io/adarga-docker/document-clustering-document-cluster-predict
+  newName: eu.gcr.io/adarga-docker/document-clustering-document-cluster-predict
+  newTag: 1.0.0
+nameSuffix: 1-0-0

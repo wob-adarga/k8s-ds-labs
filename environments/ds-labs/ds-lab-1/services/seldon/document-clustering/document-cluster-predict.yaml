@@ -1,0 +1,64 @@
+kind: SeldonDeployment
+apiVersion: machinelearning.seldon.io/v1
+metadata:
+  name: document-clustering
+  namespace: seldon
+  labels: {}
+spec:
+  name: document-clustering
+  protocol: seldon
+  annotations: {}
+  predictors:
+    - name: default
+      graph:
+        name: document-clustering
+        type: MODEL
+        parameters:
+          - name: 'doc2vec_threshold'
+            value: 0.5
+            type: FLOAT
+          - name: 'entity_threshold'
+            value: 0.07
+            type: FLOAT
+          - name: 'active_cluster_window'
+            value: '14 days'
+            type: STRING
+          - name: 'max_cluster_age'
+            value: '14 days'
+            type: STRING
+
+      componentSpecs:
+        - spec:
+            containers:
+              - name: document-clustering
+                image: eu.gcr.io/adarga-docker/doc2vec-predict:from_kustomize
+                env:
+                  - name: LOG_LEVEL
+                    value: INFO
+                  - name: PGHOST
+                    valueFrom:
+                      configMapKeyRef:
+                        key: DB_CONN
+                        name: document-clustering-db-credentials
+                  - name: PGPORT
+                    valueFrom:
+                      configMapKeyRef:
+                        key: DB_PORT
+                        name: document-clustering-db-credentials
+                  - name: PGUSER
+                    valueFrom:
+                      secretKeyRef:
+                        key: POSTGRES_USER
+                        name: document-clustering-db-credentials
+                  - name: PGDATABASE
+                    valueFrom:
+                      secretKeyRef:
+                        key: POSTGRES_DB
+                        name: document-clustering-db-credentials
+                  - name: PGPASSWORD
+                    valueFrom:
+                      secretKeyRef:
+                        key: POSTGRES_PASSWORD
+                        name: document-clustering-db-credentials
+
+          replicas: 1
