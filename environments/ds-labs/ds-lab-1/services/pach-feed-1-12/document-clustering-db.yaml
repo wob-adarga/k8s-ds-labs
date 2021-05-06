@@ -3,7 +3,7 @@ apiVersion: kci.rocks/v1alpha1
 kind: Database
 metadata:
   name: document-clustering-db
-  namespace: pach-feed-1-12
+  namespace: seldon
 spec:
   secretName: document-clustering-db-credentials
   instance: pdb-instance
@@ -14,3 +14,4 @@ spec:
   extensions:
     - uuid-ossp
     - plpgsql
+    - intarray
