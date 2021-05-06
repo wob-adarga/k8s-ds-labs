@@ -64,8 +64,6 @@ spec:
               - name: initialise-db
                 image: eu.gcr.io/adarga-docker/document-clustering-db-migration:from_kustomize
                 env:
-                  - name: LOG_LEVEL
-                    value: INFO
                   - name: PGHOST
                     valueFrom:
                       configMapKeyRef:
