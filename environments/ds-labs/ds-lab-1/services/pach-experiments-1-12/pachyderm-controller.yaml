@@ -24,10 +24,10 @@ spec:
           - name: PACHYDERM_ADDRESS
             valueFrom:
               configMapKeyRef:
-                name:
+                name: pachyderm-controller-config
                 key: PACHYDERM_ADDRESS
           - name: NAMESPACE
             valueFrom:
               configMapKeyRef:
-                name:
+                name: pachyderm-controller-config
                 key: NAMESPACE
