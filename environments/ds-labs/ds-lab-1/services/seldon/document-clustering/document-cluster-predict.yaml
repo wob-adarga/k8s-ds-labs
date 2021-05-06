@@ -31,7 +31,38 @@ spec:
         - spec:
             containers:
               - name: document-clustering
-                image: eu.gcr.io/adarga-docker/doc2vec-predict:from_kustomize
+                image: eu.gcr.io/adarga-docker/document-clustering-predict:from_kustomize
+                env:
+                  - name: LOG_LEVEL
+                    value: INFO
+                  - name: PGHOST
+                    valueFrom:
+                      configMapKeyRef:
+                        key: DB_CONN
+                        name: document-clustering-db-credentials
+                  - name: PGPORT
+                    valueFrom:
+                      configMapKeyRef:
+                        key: DB_PORT
+                        name: document-clustering-db-credentials
+                  - name: PGUSER
+                    valueFrom:
+                      secretKeyRef:
+                        key: POSTGRES_USER
+                        name: document-clustering-db-credentials
+                  - name: PGDATABASE
+                    valueFrom:
+                      secretKeyRef:
+                        key: POSTGRES_DB
+                        name: document-clustering-db-credentials
+                  - name: PGPASSWORD
+                    valueFrom:
+                      secretKeyRef:
+                        key: POSTGRES_PASSWORD
+                        name: document-clustering-db-credentials
+            initContainers:
+              - name: initialise-db
+                image: eu.gcr.io/adarga-docker/document-clustering-db-migration:from_kustomize
                 env:
                   - name: LOG_LEVEL
                     value: INFO
