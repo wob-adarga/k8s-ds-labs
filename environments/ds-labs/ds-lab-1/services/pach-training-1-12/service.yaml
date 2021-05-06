@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ner-training-dashboard
+  namespace: pach-training-1-12
+spec:
+  selector:
+    app: ner-training-dashboard
+  type: NodePort
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080

@@ -1,0 +1,55 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ner-training-dashboard
+  namespace: pach-training-1-12
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ner-training-dashboard
+  template:
+    metadata:
+      labels:
+        app: ner-training-dashboard
+      annotations:
+        prometheus.io/scrape: 'true'
+    spec:
+      containers:
+        - name: webserver
+          image: eu.gcr.io/adarga-docker/ds-custom-entity-recogniser-dashboard:from_kustomize
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            requests:
+              cpu: 50m
+              memory: 2Gi
+          env:
+          - name: PGHOST
+            valueFrom:
+              configMapKeyRef:
+                key: DB_CONN
+                name: benchmark-db-credentials
+          - name: PGPORT
+            valueFrom:
+              configMapKeyRef:
+                key: DB_PORT
+                name: benchmark-db-credentials
+          - name: PGUSER
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_USER
+                name: benchmark-db-credentials
+          - name: PGDATABASE
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_DB
+                name: benchmark-db-credentials
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_PASSWORD
+                name: benchmark-db-credentials

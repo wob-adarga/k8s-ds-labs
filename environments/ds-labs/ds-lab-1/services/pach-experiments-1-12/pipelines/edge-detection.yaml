@@ -1,0 +1,19 @@
+apiVersion: adarga.ai/v1alpha1
+kind: PachydermPipeline
+metadata:
+  name: edge-detection
+  namespace: pach-experiments-1-12
+spec:
+  name: edge-detection
+  description: Edge Detection Hello World
+  enable_stats: false
+  input:
+    pfs:
+      branch: master
+      glob: /*/*
+      repo: images
+  transform:
+    image: pachyderm/opencv
+    cmd:
+    - python3
+    - /edges.py

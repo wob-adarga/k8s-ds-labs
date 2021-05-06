@@ -1,50 +1,50 @@
 kind: SeldonDeployment
 apiVersion: machinelearning.seldon.io/v1
 metadata:
-  name: doc2vec
+  name: event-grouper
   namespace: seldon
   labels: {}
 spec:
-  name: doc2vec
+  name: event-grouper
   protocol: seldon
   annotations: {}
   predictors:
     - name: default
       graph:
-        name: doc2vec
+        name: event-grouper
         type: MODEL
-        parameters:
-          - name: 'model_data'
-            value: '/models/doc2vec_dm_small_230620.mdl'
-            type: STRING
 
       componentSpecs:
         - spec:
             containers:
-              - name: doc2vec
-                image: eu.gcr.io/adarga-docker/doc2vec-predict:from_kustomize
+              - name: event-grouper
+                image: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon:from_kustomize
                 env:
                   - name: LOG_LEVEL
                     value: INFO
+                  - name: MODEL_NAME
+                    value: EventGrouper
+                  - name: MODEL_DATA
+                    value: /models/en_core_web_sm-2.3.1
 
                 volumeMounts:
                   - mountPath: /models
                     name: model-data
 
             initContainers:
-              - name: doc2vec-initialiser
+              - name: spacy-initialiser
                 image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
                 imagePullPolicy: IfNotPresent
                 env:
-                  - name: DOC2VEC_VERSION
+                  - name: OMWVERSION
                     valueFrom:
                       configMapKeyRef:
-                        name: adarga-model-weights-config
-                        key: DOC2VEC_VERSION
+                        name: opensource-model-weights-config
+                        key: OMWVERSION
                   - name: AWS_ECR
                     valueFrom:
                       configMapKeyRef:
-                        name: adarga-model-weights-config
+                        name: opensource-model-weights-config
                         key: AWS_ECR
                 command:
                   - /bin/sh
@@ -54,15 +54,14 @@ spec:
                     oras-aws-ecr-login
                     echo "downloading model"
                     cd /models
-                    oras pull ${AWS_ECR}/amw/doc2vec/:${DOC2VEC_VERSION} --allow-all
-                    tar -xf doc2vec_dm_small_230620.tar.gz
-                    rm doc2vec_dm_small_230620.tar.gz
+                    oras pull ${AWS_ECR}/omw/spacy-small-2-3:${OMWVERSION} --allow-all
+                    tar -xf models/spacy-small-2-3/weights.tar.gz --strip-components 2
+
                     echo "done"
 
                 volumeMounts:
                   - mountPath: /models
                     name: model-data
-
             volumes:
               - emptyDir: {}
                 name: model-data

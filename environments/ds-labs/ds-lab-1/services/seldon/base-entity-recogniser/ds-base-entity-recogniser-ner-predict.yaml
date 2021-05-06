@@ -1,3 +1,32 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ner-base
+  namespace: seldon
+data:
+  labels.json: |-
+    {
+      "cardinal number": "CARDINAL",
+      "date": "DATE",
+      "person": "PERSON",
+      "group": "NORP",
+      "geopolitical area": "GPE",
+      "law": "LAW",
+      "organization": "ORG",
+      "percent": "PERCENT",
+      "ordinal number": "ORDINAL",
+      "money": "MONEY",
+      "work of art": "WORK_OF_ART",
+      "facility": "FAC",
+      "time": "TIME",
+      "location": "LOC",
+      "quantity": "QUANTITY",
+      "product": "PRODUCT",
+      "event": "EVENT",
+      "language": "LANGUAGE"
+    }
+---
 kind: SeldonDeployment
 apiVersion: machinelearning.seldon.io/v1
 metadata:
@@ -16,6 +45,9 @@ spec:
         parameters:
           - name: "name"
             value: "/models/models/tner-xlm-roberta-base-ontonotes5/"
+            type: STRING
+          - name: "reconfig_path"
+            value: "/config/labels.json"
             type: STRING
 
       componentSpecs:
@@ -46,6 +78,8 @@ spec:
                 volumeMounts:
                   - mountPath: /models
                     name: model-data
+                  - mountPath: /config
+                    name: ner-config
 
             initContainers:
               - name: spacy-initialiser
@@ -81,4 +115,7 @@ spec:
             volumes:
               - emptyDir: {}
                 name: model-data
+              - name: ner-config
+                configMap:
+                  name: ner-base
       replicas: 1

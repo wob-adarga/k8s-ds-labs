@@ -5,4 +5,4 @@ resources:
 images:
 - name: eu.gcr.io/adarga-docker/ds-text-classification-zero_shot_predict
   newName: eu.gcr.io/adarga-docker/ds-text-classification-zero_shot_predict
-  newTag: 1.0.0
+  newTag: 1.2.6
