@@ -22,6 +22,12 @@ spec:
         image: eu.gcr.io/adarga-docker/qd-pipeline-controller:from_kustomize
         env:
           - name: PACHYDERM_ADDRESS
-            value: pachd:650
+            valueFrom:
+              configMapKeyRef:
+                name:
+                key: PACHYDERM_ADDRESS
           - name: NAMESPACE
-            value: pach-experiments-1-12
+            valueFrom:
+              configMapKeyRef:
+                name:
+                key: NAMESPACE
