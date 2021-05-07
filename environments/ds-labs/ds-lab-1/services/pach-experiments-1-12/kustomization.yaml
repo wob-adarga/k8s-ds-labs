@@ -1,5 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: pach-experiments-1-12
 configMapGenerator:
 - files:
   - pachyderm-controller.properties
@@ -11,7 +12,6 @@ resources:
 - pachyderm-controller.yaml
 - ./jobs
 - ./pipelines
-- ./kustomizeconfig
 images:
 - name: 382855879375.dkr.ecr.eu-west-2.amazonaws.com/infra/qd-pipeline-controller
   newTag: 1-1-0
