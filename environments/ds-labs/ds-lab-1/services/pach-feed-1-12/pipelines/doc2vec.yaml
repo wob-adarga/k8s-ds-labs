@@ -1,10 +1,10 @@
 kind: PachydermPipeline
 apiVersion: adarga.ai/v1alpha1
 metadata:
-  name: doc2vec
+  name: doc2vec-generator
   namespace: pach-feed-1-12
 spec:
-  name: doc2vec
+  name: doc2vec-generator
   description: "Doc2Vec generator pipeline. Calls Seldon, Returns embedding. (Controller)"
   transform:
     cmd: ["python3", "Doc2VecPipeline.py"]
