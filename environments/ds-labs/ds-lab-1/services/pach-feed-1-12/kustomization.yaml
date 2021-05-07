@@ -5,3 +5,4 @@ resources:
   - pachctl-internal-role.yaml
   - pachd-internal-lb.yaml
   - ./jobs
+  - ./pipelines
