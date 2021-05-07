@@ -14,3 +14,5 @@ resources:
 images:
 - name: 382855879375.dkr.ecr.eu-west-2.amazonaws.com/infra/qd-pipeline-controller
   newTag: 1-1-0
+- name: eu.gcr.io/adarga-docker/infra/qd-pipeline-controller
+  newTag: 1.2.0
