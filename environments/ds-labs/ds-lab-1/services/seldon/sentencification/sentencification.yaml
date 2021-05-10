@@ -17,10 +17,10 @@ spec:
       componentSpecs:
         - spec:
             containers:
-              - name: doc2vec
+              - name: sentification
                 image: eu.gcr.io/adarga-docker/sentencification:from_kustomize
                 env:
                   - name: LOG_LEVEL
                     value: INFO
-                    
+
           replicas: 1
