@@ -17,7 +17,7 @@ spec:
       componentSpecs:
         - spec:
             containers:
-              - name: sentification
+              - name: sentencification
                 image: eu.gcr.io/adarga-docker/sentencification:from_kustomize
                 env:
                   - name: LOG_LEVEL
