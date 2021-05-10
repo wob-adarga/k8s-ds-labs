@@ -1,0 +1,24 @@
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: event-detector
+  namespace: pach-feed-1-12
+spec:
+  name: event-detector
+  description: "Event typer based on lookup table. (Controller)"
+  transform:
+    cmd: ["python3", "event-detector"]
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:from_kustomize
+    env:
+      - name: SERVICE_URL_BASE
+        value: "http://doc2vec-default.seldon.svc.cluster.local:8000"
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+  input:
+    pfs:
+      repo: "sentence-extraction"
+      glob: "/*/*"
+      branch: "master"
+
+  egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-event-detector"
+  enable_stats: false
