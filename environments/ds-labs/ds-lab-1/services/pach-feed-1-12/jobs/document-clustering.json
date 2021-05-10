@@ -4,15 +4,15 @@
   },
   "metadata": {
     "annotations": {
-        "document-clustering-model-version": "%%TAG%%"
+        "document-clustering-model-version": "0.0.0"
     }
   },
   "description": "document clustering pipeline",
   "transform": {
     "cmd": [ "python3", "DocumentClusteringPipeline.py"],
-    "image": "eu.gcr.io/adarga-docker/document-clustering-pipeline:%%TAG%%",
+    "image": "eu.gcr.io/adarga-docker/document-clustering-pipeline:0.0.0",
     "env": {
-      "SERVICE_URL_BASE": "http://document-clustering-default.seldon.svc.cluster.local:8000",
+      "SERVICE_URL_BASE": "http://document-clustering-default.seldon.svc.clßuster.local:8000",
       "SERVICE_ENDPOINT": "api/v1.0/predictions",
       "DOCUMENTS_REPO": "/pfs/clean-ingress-feed",
       "MENTIONS_REPO": "/pfs/mention-typer",
