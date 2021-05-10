@@ -1,0 +1,26 @@
+kind: SeldonDeployment
+apiVersion: machinelearning.seldon.io/v1
+metadata:
+  name: sentencification
+  namespace: seldon
+  labels: {}
+spec:
+  name: sentencification
+  protocol: seldon
+  annotations: {}
+  predictors:
+    - name: default
+      graph:
+        name: sentencification
+        type: MODEL
+
+      componentSpecs:
+        - spec:
+            containers:
+              - name: doc2vec
+                image: eu.gcr.io/adarga-docker/sentencification:from_kustomize
+                env:
+                  - name: LOG_LEVEL
+                    value: INFO
+                    
+          replicas: 1
