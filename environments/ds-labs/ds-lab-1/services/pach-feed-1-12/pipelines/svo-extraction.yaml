@@ -14,7 +14,6 @@ spec:
         value: "http://svo-extraction-default.seldon.svc.cluster.local:8000"
       - name: SERVICE_ENDPOINT
         value: "api/v1.0/predictions"
-      - name: INPUT_REPO
   input:
     pfs:
       repo: "sentence-extraction"

@@ -4,7 +4,7 @@ metadata:
   name: sentence-extraction
   namespace: pach-feed-1-12
 spec:
-  name: doc2vec-generator
+  name: sentence-extraction
   description: "DSentence extraction using Punkt NLTK. (Controller)"
   transform:
     cmd: ["python3", "-m", "service", "sentence-extraction"]
