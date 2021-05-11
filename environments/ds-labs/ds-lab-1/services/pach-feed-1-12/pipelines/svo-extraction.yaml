@@ -20,5 +20,5 @@ spec:
       glob: "/*/*"
       branch: "master"
 
-  egress: "s3://adarga-ds-lab-1-pachyderm-egress/svo-extraction"
+  egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-svo-extraction"
   enable_stats: false
