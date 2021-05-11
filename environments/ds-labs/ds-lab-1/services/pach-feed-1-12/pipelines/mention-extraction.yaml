@@ -5,7 +5,7 @@ metadata:
   namespace: pach-feed-1-12
 spec:
   name: mention_extraction
-  description: "mention extraction based on noun chunks. (Controller)"
+  description: "Mention extraction based on noun chunks. (Controller)"
   transform:
     cmd: ["python3", "-m", "service", "mention-extraction"]
     image: eu.gcr.io/adarga-docker/ds-knowledge-transform:from_kustomize
