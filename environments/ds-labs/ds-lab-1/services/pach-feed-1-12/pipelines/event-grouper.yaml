@@ -5,7 +5,7 @@ metadata:
   namespace: pach-feed-1-12
 spec:
   name: event-grouper
-  description: "Event typer based on lookup table. (Controller)"
+  description: "Event grouping based on NaiveGrouper table. (Controller)"
   transform:
     cmd: ["python3", "-m", "service","event-grouper"]
     image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:from_kustomize
