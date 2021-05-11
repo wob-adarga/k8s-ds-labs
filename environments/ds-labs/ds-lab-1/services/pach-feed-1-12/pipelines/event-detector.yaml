@@ -7,11 +7,11 @@ spec:
   name: event-detector
   description: "Event typer based on lookup table. (Controller)"
   transform:
-    cmd: ["python3", "event-detector"]
+    cmd: ["python3", "-m", "service", "event-detector"]
     image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:from_kustomize
     env:
       - name: SERVICE_URL_BASE
-        value: "http://eventdetector-default.seldon.svc.cluster.local:8000"
+        value: "http://event-detector-default.seldon.svc.cluster.local:8000"
       - name: SERVICE_ENDPOINT
         value: "api/v1.0/predictions"
   input:
