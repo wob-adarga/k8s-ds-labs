@@ -1,58 +1,17 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- clean-documents.yaml
-- mention-extraction.yaml
-- mention-grouper.yaml
-- mention-typer.yaml
-- sentence-extraction.yaml
-- svo-extraction.yaml
-- event-detector.yaml
-- event-grouper.yaml
 - zero-shot-classifier.yaml
-- doc2vec.yaml
 - future-signals-classifier.yaml
 nameSuffix: 1.2.6
 configMapGenerator:
-- files:
-  - clean-documents.json
-  name: clean-documents-pipeline-config
-  namespace: pach-feed-1-12
-- files:
-  - mention-extraction.json
-  name: mention-extraction-pipeline-config
-  namespace: pach-feed-1-12
-- files:
-  - mention-grouper.json
-  name: mention-grouper-pipeline-config
-  namespace: pach-feed-1-12
 - files:
   - mention-typer.json
   name: mention-typer-pipeline-config
   namespace: pach-feed-1-12
 - files:
-  - sentence-extraction.json
-  name: sentence-extraction-pipeline-config
-  namespace: pach-feed-1-12
-- files:
-  - svo-extraction.json
-  name: svo-extraction-pipeline-config
-  namespace: pach-feed-1-12
-- files:
-  - event-detector.json
-  name: event-detector-pipeline-config
-  namespace: pach-feed-1-12
-- files:
-  - event-grouper.json
-  name: event-grouper-pipeline-config
-  namespace: pach-feed-1-12
-- files:
   - zero-shot-classifier.json
   name: zero-shot-classifier-pipeline-config
-  namespace: pach-feed-1-12
-- files:
-  - doc2vec.json
-  name: doc2vec-pipeline-config
   namespace: pach-feed-1-12
 - files:
   - future-signals-classifier.json
