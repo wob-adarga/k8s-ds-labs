@@ -8,6 +8,7 @@ resources:
 - svo-extraction.yaml
 - event-detector.yaml
 - mention-extraction.yaml
+- clean-documents.yaml
 images:
 - name: eu.gcr.io/adarga-docker/ds-knowledge-store-transform
   newTag: 1.17.2
