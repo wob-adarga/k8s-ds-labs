@@ -15,3 +15,4 @@ spec:
       glob: "/*/*"
       branch: "master"
   enable_stats: false
+  egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-clean-documents"
