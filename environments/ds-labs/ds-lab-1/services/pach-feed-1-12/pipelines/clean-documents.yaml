@@ -1,0 +1,18 @@
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: clean-ingress-feed
+  namespace: pach-feed-1-12
+spec:
+  name: clean-ingress-feed
+  description: "Clean ingress documents. (Controller)"
+  transform:
+    cmd: ["python3", "-m", "service", "clean-documents"]
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:from_kustomize
+  input:
+    pfs:
+      repo: "ingress-dev-1-spout"
+      glob: "/*/*"
+      branch: "master"
+  enable_stats: false
+  egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-clean-documents"

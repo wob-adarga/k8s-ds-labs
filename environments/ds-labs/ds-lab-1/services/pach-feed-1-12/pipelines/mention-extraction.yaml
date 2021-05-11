@@ -1,0 +1,24 @@
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: mention-extraction
+  namespace: pach-feed-1-12
+spec:
+  name: mention-extraction
+  description: "Mention extraction based on noun chunks. (Controller)"
+  transform:
+    cmd: ["python3", "-m", "service", "mention-extraction"]
+    image: eu.gcr.io/adarga-docker/ds-knowledge-transform:from_kustomize
+    env:
+      - name: SERVICE_URL_BASE
+        value: "http://mentionextraction-default.seldon.svc.cluster.local:8000"
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+  input:
+    pfs:
+      repo: "sentence-extraction"
+      glob: "/*/*"
+      branch: "master"
+
+  egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-mention-extraction"
+  enable_stats: false

@@ -1,0 +1,25 @@
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: sentence-extraction
+  namespace: pach-feed-1-12
+spec:
+  name: sentence-extraction
+  description: "Sentence extraction using Punkt NLTK. (Controller)"
+  transform:
+    cmd: ["python3", "-m", "service", "sentence-extraction"]
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:from_kustomize
+    env:
+      - name: SERVICE_URL_BASE
+        value: "http://sentence-extraction-default.seldon.svc.cluster.local:8000"
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+
+  input:
+    pfs:
+      repo: "clean-ingress-feed"
+      glob: "/*/*"
+      branch: "master"
+
+  egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-sentence-extraction"
+  enable_stats: false
