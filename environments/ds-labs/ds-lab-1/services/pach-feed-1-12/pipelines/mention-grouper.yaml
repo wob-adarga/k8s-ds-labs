@@ -20,5 +20,5 @@ spec:
       glob: "/*/*"
       branch: "master"
 
-  egress: "s3://adarga-ds-lab-1-pachyderm-egress/mention-grouper"
+  egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-mention-grouper"
   enable_stats: false
