@@ -6,6 +6,7 @@ resources:
   - ./text-classification
   - ./future-references
   - ./doc2vec
+  - ./sentencification
 configurations:
 - kustomizeconfig/seldondeployment.yaml
 configMapGenerator:
