@@ -4,7 +4,7 @@ metadata:
   name: mention-extraction
   namespace: pach-feed-1-12
 spec:
-  name: mention_extraction
+  name: mention-extraction
   description: "Mention extraction based on noun chunks. (Controller)"
   transform:
     cmd: ["python3", "-m", "service", "mention-extraction"]
