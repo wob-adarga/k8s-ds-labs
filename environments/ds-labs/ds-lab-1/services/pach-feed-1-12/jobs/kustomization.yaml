@@ -6,10 +6,6 @@ resources:
 nameSuffix: 1.2.6
 configMapGenerator:
 - files:
-  - mention-typer.json
-  name: mention-typer-pipeline-config
-  namespace: pach-feed-1-12
-- files:
   - zero-shot-classifier.json
   name: zero-shot-classifier-pipeline-config
   namespace: pach-feed-1-12
