@@ -5,7 +5,7 @@ metadata:
   namespace: pach-feed-1-12
 spec:
   name: sentence-extraction
-  description: "DSentence extraction using Punkt NLTK. (Controller)"
+  description: "Sentence extraction using Punkt NLTK. (Controller)"
   transform:
     cmd: ["python3", "-m", "service", "sentence-extraction"]
     image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:from_kustomize
