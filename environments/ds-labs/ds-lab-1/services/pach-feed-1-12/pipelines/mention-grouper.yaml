@@ -8,7 +8,7 @@ spec:
   description: "Mention Grouping. (Controller)"
   transform:
     cmd: ["python3", "-m", "service", "mention-grouper"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store:from_kustomize
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:from_kustomize
     env:
       - name: SERVICE_URL_BASE
         value: "http://mentiongrouper-default.seldon.svc.cluster.local:8000"

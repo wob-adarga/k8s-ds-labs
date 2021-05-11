@@ -8,7 +8,7 @@ spec:
   description: "Mention extraction based on noun chunks. (Controller)"
   transform:
     cmd: ["python3", "-m", "service", "mention-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-transform:from_kustomize
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:from_kustomize
     env:
       - name: SERVICE_URL_BASE
         value: "http://mentionextraction-default.seldon.svc.cluster.local:8000"

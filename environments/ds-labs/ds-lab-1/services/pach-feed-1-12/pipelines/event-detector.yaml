@@ -5,7 +5,7 @@ metadata:
   namespace: pach-feed-1-12
 spec:
   name: event-detector
-  description: "Event typer based on lookup table. (Controller)"
+  description: "Event detection based on lookup table. (Controller)"
   transform:
     cmd: ["python3", "-m", "service", "event-detector"]
     image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:from_kustomize
