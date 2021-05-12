@@ -19,8 +19,4 @@ configMapGenerator:
   envs:
   - adarga-model-weights.properties
   namespace: seldon
-- name: document-clustering-db-credentials 
-  envs:
-  - document-clustering-db.yaml
-  namespace: seldon
 
