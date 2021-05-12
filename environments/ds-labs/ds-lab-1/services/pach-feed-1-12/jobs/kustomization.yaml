@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
 - zero-shot-classifier.yaml
 - future-signals-classifier.yaml
-nameSuffix: 1.2.6
+nameSuffix: 1.3.0
 configMapGenerator:
 - files:
   - zero-shot-classifier.json
