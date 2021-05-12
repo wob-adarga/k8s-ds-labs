@@ -23,10 +23,10 @@ spec:
                   - name: LOG_LEVEL
                     value: INFO
                   - name: MODEL_PATH
-                    value: "/data/en_core_web_lg"
+                    value: "/models/en_core_web_lg-3.0.0"
 
                 volumeMounts:
-                  - mountPath: /data
+                  - mountPath: /models
                     name: model-data
         
             initContainers:
@@ -51,15 +51,14 @@ spec:
                     export HOME=/tmp # to workaround privileged execution issues
                     oras-aws-ecr-login
                     echo "downloading model"
-                    cd /data
-                    oras pull ${AWS_ECR}/omw/sentencification/:${OMWVERSION} --allow-all
-                    tar -xf spacy-large-3-0-0/weights.tar.gz --strip-components 2
-                    rm spacy-large-3-0-0/weights.tar.gz
+                    cd /models
+                    oras pull ${AWS_ECR}/omw/spacy-large-3-0-0/:${OMWVERSION} --allow-all
+                    tar -xf models/spacy-large-3-0-0/weights.tar.gz --strip-components 2
 
                     echo "done"
 
                 volumeMounts:
-                  - mountPath: /data
+                  - mountPath: /models
                     name: model-data
 
             volumes:
