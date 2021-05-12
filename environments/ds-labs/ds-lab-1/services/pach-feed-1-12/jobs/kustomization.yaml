@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 - zero-shot-classifier.yaml
 - future-signals-classifier.yaml
+- document-clustering.yaml
 nameSuffix: 1.3.0
 configMapGenerator:
 - files:
@@ -12,4 +13,8 @@ configMapGenerator:
 - files:
   - future-signals-classifier.json
   name: future-signals-classifier-pipeline-config
+  namespace: pach-feed-1-12
+- files:
+  - document-clustering.json
+  name: document-clustering-pipeline-config
   namespace: pach-feed-1-12
