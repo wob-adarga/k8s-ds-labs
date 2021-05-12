@@ -7,6 +7,7 @@ resources:
   - ./future-references
   - ./doc2vec
   - ./sentencification
+  - ./document-clustering
 configurations:
 - kustomizeconfig/seldondeployment.yaml
 configMapGenerator:
