@@ -15,11 +15,11 @@ spec:
         type: MODEL
         parameters:
           - name: 'doc2vec_threshold'
-            value: 0.5
-            type: FLOAT
+            value: '0.5'
+            type: DOUBLE
           - name: 'entity_threshold'
-            value: 0.07
-            type: FLOAT
+            value: '0.07'
+            type: DOUBLE
           - name: 'active_cluster_window'
             value: '14 days'
             type: STRING
