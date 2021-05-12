@@ -34,15 +34,15 @@ spec:
                 image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
                 imagePullPolicy: IfNotPresent
                 env:
-                  - name: SENTENIFICATION_VERSION
+                  - name: OMWVERSION
                     valueFrom:
                       configMapKeyRef:
-                        name: open-model-weights-config
-                        key: SENTENIFICATION_VERSION
+                        name: opensource-model-weights-config
+                        key: OMWVERSION
                   - name: AWS_ECR
                     valueFrom:
                       configMapKeyRef:
-                        name: open-model-weights-config
+                        name: opensource-model-weights-config
                         key: AWS_ECR
                 command:
                   - /bin/sh
@@ -52,7 +52,7 @@ spec:
                     oras-aws-ecr-login
                     echo "downloading model"
                     cd /data
-                    oras pull ${AWS_ECR}/omw/sentencification/:${SENTENIFICATION_VERSION} --allow-all
+                    oras pull ${AWS_ECR}/omw/sentencification/:${OMWVERSION} --allow-all
                     tar -xf spacy-large-3-0-0/weights.tar.gz --strip-components 2
                     rm spacy-large-3-0-0/weights.tar.gz
 
