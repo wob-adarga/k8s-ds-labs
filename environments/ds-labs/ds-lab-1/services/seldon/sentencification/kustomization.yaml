@@ -5,4 +5,4 @@ resources:
 images:
 - name: eu.gcr.io/adarga-docker/ds-sentencification
   newName: eu.gcr.io/adarga-docker/ds-sentencification  
-  newTag: 0.0.1
+  newTag: 0.0.1-rc3

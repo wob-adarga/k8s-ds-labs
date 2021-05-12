@@ -18,9 +18,52 @@ spec:
         - spec:
             containers:
               - name: sentencification
-                image: eu.gcr.io/adarga-docker/sentencification:from_kustomize
+                image: eu.gcr.io/adarga-docker/ds-sentencification:from_kustomize
                 env:
                   - name: LOG_LEVEL
                     value: INFO
+                  - name: MODEL_PATH
+                    value: "/data/en_core_web_lg"
+
+                volumeMounts:
+                  - mountPath: /data
+                    name: model-data
+        
+            initContainers:
+              - name: sentencification-initialiser
+                image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
+                imagePullPolicy: IfNotPresent
+                env:
+                  - name: SENTENIFICATION_VERSION
+                    valueFrom:
+                      configMapKeyRef:
+                        name: open-model-weights-config
+                        key: SENTENIFICATION_VERSION
+                  - name: AWS_ECR
+                    valueFrom:
+                      configMapKeyRef:
+                        name: open-model-weights-config
+                        key: AWS_ECR
+                command:
+                  - /bin/sh
+                  - -xc
+                  - |
+                    export HOME=/tmp # to workaround privileged execution issues
+                    oras-aws-ecr-login
+                    echo "downloading model"
+                    cd /data
+                    oras pull ${AWS_ECR}/omw/sentencification/:${SENTENIFICATION_VERSION} --allow-all
+                    tar -xf spacy-large-3-0-0/weights.tar.gz --strip-components 2
+                    rm spacy-large-3-0-0/weights.tar.gz
+
+                    echo "done"
+
+                volumeMounts:
+                  - mountPath: /data
+                    name: model-data
+
+            volumes:
+              - emptyDir: {}
+                name: model-data
 
           replicas: 1
