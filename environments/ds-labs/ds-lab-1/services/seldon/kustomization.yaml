@@ -8,6 +8,7 @@ resources:
   - ./doc2vec
   - ./sentencification
   - ./document-clustering
+  - ./document-clustering-db.yaml
 configurations:
 - kustomizeconfig/seldondeployment.yaml
 configMapGenerator:
