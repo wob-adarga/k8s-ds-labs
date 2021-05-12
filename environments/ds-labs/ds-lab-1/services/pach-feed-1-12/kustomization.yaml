@@ -6,12 +6,12 @@ configMapGenerator:
   - pachyderm-controller.properties
   name: pachyderm-controller-config
 resources:
-  - pachyderm-core.yaml
-  - pachctl-internal-role.yaml
-  - pachd-internal-lb.yaml
-  - pachyderm-controller.yaml
-  - ./jobs
-  - ./pipelines
+- pachyderm-core.yaml
+- pachctl-internal-role.yaml
+- pachd-internal-lb.yaml
+- pachyderm-controller.yaml
+- ./jobs
+- ./pipelines
 images:
 - name: eu.gcr.io/adarga-docker/infra/qd-pipeline-controller
-  newTag: 1.2.0
+  newTag: 1.3.0
