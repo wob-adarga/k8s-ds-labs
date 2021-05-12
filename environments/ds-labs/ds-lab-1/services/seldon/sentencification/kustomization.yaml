@@ -4,4 +4,4 @@ resources:
 - sentencification.yaml
 images:
 - name: eu.gcr.io/adarga-docker/ds-sentencification
-  newTag: 0.0.1-rc3
+  newTag: 1.0.0
