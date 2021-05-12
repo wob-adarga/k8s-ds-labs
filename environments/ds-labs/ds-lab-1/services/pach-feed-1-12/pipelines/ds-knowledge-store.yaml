@@ -1,0 +1,226 @@
+---
+# Source: ds-knowledge-store/templates/transform.yaml
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: clean-ingress-feed
+  namespace: pach-feed-1-12
+spec:
+  name: clean-ingress-feed
+  description: clean-ingress-feed ds-knowledge-store transform
+  transform:
+    cmd: ["python3", "-m", "service", "clean-documents"]
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:0.0.0
+
+    
+  input:
+    pfs:
+      repo: ingress-dev-1-spout
+      glob: "/*/*"
+      branch: "master"
+
+  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-clean-documents
+  enable_stats: false
+---
+# Source: ds-knowledge-store/templates/transform.yaml
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: sentence-extraction
+  namespace: pach-feed-1-12
+spec:
+  name: sentence-extraction
+  description: sentence-extraction ds-knowledge-store transform
+  transform:
+    cmd: ["python3", "-m", "service", "sentence-extraction"]
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:0.0.0
+
+    
+    env:
+      - name: SERVICE_URL_BASE
+        value: http://sentence-extraction-default.seldon.svc.cluster.local:8000
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+    
+  input:
+    pfs:
+      repo: clean-ingress-feed
+      glob: "/*/*"
+      branch: "master"
+
+  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-sentence-extraction
+  enable_stats: false
+---
+# Source: ds-knowledge-store/templates/transform.yaml
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: event-detector
+  namespace: pach-feed-1-12
+spec:
+  name: event-detector
+  description: event-detector ds-knowledge-store transform
+  transform:
+    cmd: ["python3", "-m", "service", "event-detector"]
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:0.0.0
+
+    
+    env:
+      - name: SERVICE_URL_BASE
+        value: http://event-detector-default.seldon.svc.cluster.local:8000
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+    
+  input:
+    pfs:
+      repo: sentence-extraction
+      glob: "/*/*"
+      branch: "master"
+
+  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-event-detector
+  enable_stats: false
+---
+# Source: ds-knowledge-store/templates/transform.yaml
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: event-grouper
+  namespace: pach-feed-1-12
+spec:
+  name: event-grouper
+  description: event-grouper ds-knowledge-store transform
+  transform:
+    cmd: ["python3", "-m", "service", "event-grouper"]
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:0.0.0
+
+    
+    env:
+      - name: SERVICE_URL_BASE
+        value: http://event-grouper-default.seldon.svc.cluster.local:8000
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+    
+  input:
+    pfs:
+      repo: event-detector
+      glob: "/*/*"
+      branch: "master"
+
+  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-event-grouper
+  enable_stats: false
+---
+# Source: ds-knowledge-store/templates/transform.yaml
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: mention-extraction
+  namespace: pach-feed-1-12
+spec:
+  name: mention-extraction
+  description: mention-extraction ds-knowledge-store transform
+  transform:
+    cmd: ["python3", "-m", "service", "mention-extraction"]
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:0.0.0
+
+    
+    env:
+      - name: SERVICE_URL_BASE
+        value: http://mentionextraction-default.seldon.svc.cluster.local:8000
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+    
+  input:
+    pfs:
+      repo: sentence-extraction
+      glob: "/*/*"
+      branch: "master"
+
+  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-mention-extraction
+  enable_stats: false
+---
+# Source: ds-knowledge-store/templates/transform.yaml
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: mention-grouper
+  namespace: pach-feed-1-12
+spec:
+  name: mention-grouper
+  description: mention-grouper ds-knowledge-store transform
+  transform:
+    cmd: ["python3", "-m", "service", "mention-grouper"]
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:0.0.0
+
+    
+    env:
+      - name: SERVICE_URL_BASE
+        value: http://mentiongrouper-default.seldon.svc.cluster.local:8000
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+    
+  input:
+    pfs:
+      repo: sentence-extraction
+      glob: "/*/*"
+      branch: "master"
+
+  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-mention-grouper
+  enable_stats: false
+---
+# Source: ds-knowledge-store/templates/transform.yaml
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: mention-typer
+  namespace: pach-feed-1-12
+spec:
+  name: mention-typer
+  description: mention-typer ds-knowledge-store transform
+  transform:
+    cmd: ["python3", "-m", "service", "mention-typing"]
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:0.0.0
+
+    
+    env:
+      - name: SERVICE_URL_BASE
+        value: http://mention-typer-default.seldon.svc.cluster.local:8000
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+    
+  input:
+    pfs:
+      repo: sentence-extraction
+      glob: "/*/*"
+      branch: "master"
+
+  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-mention-typer
+  enable_stats: false
+---
+# Source: ds-knowledge-store/templates/transform.yaml
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: svo-extraction
+  namespace: pach-feed-1-12
+spec:
+  name: svo-extraction
+  description: svo-extraction ds-knowledge-store transform
+  transform:
+    cmd: ["python3", "-m", "service", "svo-extraction"]
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:0.0.0
+
+    
+    env:
+      - name: SERVICE_URL_BASE
+        value: http://svoextraction-default.seldon.svc.cluster.local:8000
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+    
+  input:
+    pfs:
+      repo: sentence-extraction
+      glob: "/*/*"
+      branch: "master"
+
+  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-svo-extraction
+  enable_stats: false
