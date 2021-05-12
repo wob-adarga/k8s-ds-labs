@@ -2,13 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - doc2vec.yaml
-- mention-grouper.yaml
-- mention-typer.yaml
-- sentence-extraction.yaml
-- svo-extraction.yaml
-- event-detector.yaml
-- mention-extraction.yaml
-- clean-documents.yaml
-images:
-- name: eu.gcr.io/adarga-docker/ds-knowledge-store-transform
-  newTag: 1.17.2
+- ds-knowledge-store.yaml
