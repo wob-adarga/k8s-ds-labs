@@ -4,7 +4,7 @@ resources:
 - zero-shot-classifier.yaml
 - future-signals-classifier.yaml
 - document-clustering.yaml
-nameSuffix: 1.3.2
+nameSuffix: 1.3.4
 configMapGenerator:
 - files:
   - zero-shot-classifier.json

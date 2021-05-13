@@ -4,13 +4,13 @@
   },
   "metadata": {
     "annotations": {
-        "document-clustering-model-version": "1.3.2"
+        "document-clustering-model-version": "1.3.4"
     }
   },
   "description": "document clustering pipeline",
   "transform": {
     "cmd": [ "python3", "DocumentClusteringPipeline.py"],
-    "image": "eu.gcr.io/adarga-docker/document-clustering-pipeline:1.3.2",
+    "image": "eu.gcr.io/adarga-docker/document-clustering-pipeline:1.3.4",
     "env": {
       "SERVICE_URL_BASE": "http://document-clustering-default.seldon.svc.cluster.local:8000",
       "SERVICE_ENDPOINT": "api/v1.0/predictions",
