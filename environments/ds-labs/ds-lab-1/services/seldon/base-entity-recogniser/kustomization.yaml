@@ -4,4 +4,4 @@ resources:
 - ds-base-entity-recogniser-ner-predict.yaml
 images:
 - name: eu.gcr.io/adarga-docker/ds-base-entity-recogniser-ner-predict
-  newTag: 1.0.6
+  newTag: 1.0.7
