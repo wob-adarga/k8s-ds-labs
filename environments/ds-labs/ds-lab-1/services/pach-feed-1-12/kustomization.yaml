@@ -9,9 +9,9 @@ resources:
 - pachyderm-core.yaml
 - pachctl-internal-role.yaml
 - pachd-internal-lb.yaml
- - pachyderm-controller.yaml
- - ./jobs
- - ./pipelines
+- pachyderm-controller.yaml
+- ./jobs
+- ./pipelines
 images:
 - name: eu.gcr.io/adarga-docker/infra/qd-pipeline-controller
   newTag: 1.4.0
