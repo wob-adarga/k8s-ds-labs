@@ -8,6 +8,7 @@ resources:
 - svo-extraction.yaml
 - event-detector.yaml
 - event-grouper.yaml
+- event-trigger-detector.yaml
 images:
 - name: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
   newName: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
