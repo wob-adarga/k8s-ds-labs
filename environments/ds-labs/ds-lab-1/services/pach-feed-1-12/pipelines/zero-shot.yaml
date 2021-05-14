@@ -1,7 +1,7 @@
 kind: PachydermPipeline
 apiVersion: adarga.ai/v1alpha1
 metadata:
-  name: zero-shot-classifier-pipeline
+  name: zero-shot-classifier
   namespace: pach-feed-1-12
 spec:
   name: zero-shot-classifier
