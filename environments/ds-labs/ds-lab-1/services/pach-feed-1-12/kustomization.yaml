@@ -15,4 +15,4 @@ resources:
 - ./pipelines
 images:
 - name: eu.gcr.io/adarga-docker/infra/qd-pipeline-controller
-  newTag: 1.5.0
+  newTag: 1.6.0
