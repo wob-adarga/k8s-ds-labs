@@ -1,0 +1,40 @@
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: document-clustering
+  namespace: pach-feed-1-12
+spec:
+  name: document-clustering
+  description: "Document clustering pipeline. (Controller)"
+  transform:
+    cmd: ["python3", "DocumentClusteringPipeline.py"]
+    image: $(DOCUMENT_CLUSTERING_IMAGE)
+    env:
+      - name: SERVICE_URL_BASE
+        value: "http://document-clustering-default.seldon.svc.cluster.local:8000"
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+      - name: DOCUMENT_REPO
+        value: "pfs/clean-ingress-feed"
+      - name: MENTIONS_REPO
+        value: "/pfs/mention-typer"
+      - name: DOC2VEC_REPO
+        value: "/pfs/doc2vec"
+      - name: OUTPUT_REPO
+        value: "/pfs/out"
+
+  input:
+    join:
+      - repo: "clean-ingress-feed"
+        glob: "/*/*"
+        branch: "master"
+      - repo: "doc2vec"
+        glob: "/*/*"
+        branch: "master"
+
+      - repo: "mention-typer"
+        glob: "/*/*"
+        branch: "master"
+
+  egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-document-clustering"
+  enable_stats: false
