@@ -24,11 +24,11 @@ spec:
   input:
     join:
       - repo: "sentence-extraction"
-        glob: "/*/*"
+        glob: "/*/(*).jsonl"
         branch: "master"
 
       - repo: "event-detector"
-        glob: "/*/*"
+        glob: "/*/(*).jsonl"
         branch: "master"
 
   egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-future-signals-classifier"
