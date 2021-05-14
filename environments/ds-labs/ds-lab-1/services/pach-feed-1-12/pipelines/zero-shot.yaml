@@ -4,7 +4,7 @@ metadata:
   name: zero-shot-classifier-pipeline
   namespace: pach-feed-1-12
 spec:
-  name: zero-shot-classifier-crd-test
+  name: zero-shot-classifier
   description: "zero shot text classification pipeline. (Controller)"
   transform:
     cmd: ["python3", "ZeroShotClassifierPipeline.py"]
