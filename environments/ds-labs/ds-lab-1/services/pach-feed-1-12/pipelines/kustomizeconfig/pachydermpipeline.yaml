@@ -1,0 +1,3 @@
+varReference:
+- path: spec/transform/image
+  kind: PachydermPipeline
