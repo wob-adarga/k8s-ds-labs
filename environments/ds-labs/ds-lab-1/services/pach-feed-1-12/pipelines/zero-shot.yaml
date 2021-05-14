@@ -1,0 +1,35 @@
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: zero-shot-classifier-pipeline
+  namespace: pach-feed-1-12
+spec:
+  name: zero-shot-classifier-crd-test
+  description: "zero shot text classification pipeline. (Controller)"
+  transform:
+    cmd: ["python3", "ZeroShotClassifierPipeline.py"]
+    image: "eu.gcr.io/adarga-docker/ds-text-classification-zero_shot_pipeline:1.2.6"
+    env:
+      - name: SERVICE_URL_BASE
+        value: "http://zero-shot-predict-default.seldon.svc.cluster.local:8000"
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+      - name: LABELS_PATH
+        value: "/pfs/text-classification-labels/PMESII_labels.json"
+      - name: INPUT_REPO
+        value: "/pfs/clean-ingress-feed"
+      - name: OUTPUT_REPO
+        value: "/pfs/out"
+
+  input:
+    cross:
+      - repo: "clean-ingress-feed"
+        glob: "/*/*"
+        branch: "master"
+
+      - repo: "text-classification-labels"
+        glob: "/*/*"
+        branch: "master"
+
+  egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-zero-shot-classifier"
+  enable_stats: false
