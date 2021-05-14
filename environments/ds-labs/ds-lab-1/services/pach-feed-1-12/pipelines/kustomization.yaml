@@ -28,6 +28,13 @@ vars:
     apiVersion: v1
   fieldref:
     fieldpath: data.ZERO_SHOT_IMAGE
+- name: DOCUMENT_CLUSTERING_IMAGE
+  objref:
+    kind: ConfigMap
+    name: image_properties
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.DOCUMENT_CLUSTERING_IMAGE
 resources:
 - doc2vec.yaml
 - ds-knowledge-store.yaml
