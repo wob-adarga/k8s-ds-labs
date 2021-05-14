@@ -18,7 +18,7 @@ vars:
   objref:
     kind: ConfigMap
     apiVersion: v1
-    name: image_properties
+    name: image-properties
   fieldref:
     fieldpath: data.FUTURE_SIGNALS_IMAGE
 - name: ZERO_SHOT_IMAGE
