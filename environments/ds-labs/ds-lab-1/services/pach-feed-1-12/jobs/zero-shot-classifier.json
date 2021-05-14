@@ -25,18 +25,18 @@
   "input": {
     "cross": [
       {
-        "pfs": {
-          "repo": "clean-ingress-feed",
-          "glob": "/*/*",
-          "branch": "master"
-        }
+	"pfs": {
+	  "repo": "clean-ingress-feed",
+	  "glob": "/*/*",
+	  "branch": "master"
+	}
       },
       {
-        "pfs": {
-          "repo": "text-classification-labels",
-          "glob": "/",
-          "branch": "master"
-        }
+	"pfs": {
+	  "repo": "text-classification-labels",
+	  "glob": "/",
+	  "branch": "master"
+	}
       }
     ]
   },
