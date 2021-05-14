@@ -40,3 +40,4 @@ resources:
 - ds-knowledge-store.yaml
 - zero-shot.yaml
 - future-signals.yaml
+- document-clustering.yaml
