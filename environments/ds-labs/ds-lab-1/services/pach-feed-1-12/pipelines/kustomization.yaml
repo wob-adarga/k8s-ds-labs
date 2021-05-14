@@ -1,5 +1,35 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+configMapGenerator:
+- name: image_properties
+  envs:
+  - image.properties
+configurations:
+- ./kustomizeconfig/pachydermpipelines.yaml
+vars:
+- name: TRANSFORMERS_IMAGE
+  objref:
+    kind: ConfigMap
+    name: image_properties
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.TRANSFORMER_IMAGE
+- name: FUTURE_SIGNALS_IMAGE
+  objref:
+    kind: ConfigMap
+    apiVersion: v1
+    name: image_properties
+  fieldref:
+    fieldpath: data.FUTURE_SIGNALS_IMAGE
+- name: ZERO_SHOT_IMAGE
+  objref:
+    kind: ConfigMap
+    name: image_properties
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.ZERO_SHOT_IMAGE
 resources:
 - doc2vec.yaml
 - ds-knowledge-store.yaml
+- zero-shot.yaml
+- future-signals.yaml
