@@ -5,7 +5,7 @@ configMapGenerator:
   envs:
   - image.properties
 configurations:
-- ./kustomizeconfig/pachydermpipelines.yaml
+- ./kustomizeconfig/pachydermpipeline.yaml
 vars:
 - name: TRANSFORMERS_IMAGE
   objref:
