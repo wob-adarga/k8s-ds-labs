@@ -10,7 +10,7 @@ spec:
   description: clean-ingress-feed ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "clean-documents"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
 
     
   input:
@@ -32,7 +32,7 @@ spec:
   description: sentence-extraction ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "sentence-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
 
     
     env:
@@ -60,7 +60,7 @@ spec:
   description: event-detector ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "event-detector"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
 
     
     env:
@@ -88,7 +88,7 @@ spec:
   description: event-grouper ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "event-grouper"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
 
     
     env:
@@ -116,7 +116,7 @@ spec:
   description: mention-extraction ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "mention-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
 
     
     env:
@@ -144,7 +144,7 @@ spec:
   description: mention-grouper ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "mention-grouper"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
 
     
     env:
@@ -172,7 +172,7 @@ spec:
   description: mention-typer ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "mention-typing"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
 
     
     env:
@@ -200,7 +200,7 @@ spec:
   description: svo-extraction ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "svo-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
 
     
     env:
