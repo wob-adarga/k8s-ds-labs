@@ -15,7 +15,7 @@ spec:
       - name: SERVICE_ENDPOINT
         value: "api/v1.0/predictions"
       - name: DOCUMENT_REPO
-        value: "pfs/clean-ingress-feed"
+        value: "/pfs/clean-ingress-feed"
       - name: MENTIONS_REPO
         value: "/pfs/mention-typer"
       - name: DOC2VEC_REPO
