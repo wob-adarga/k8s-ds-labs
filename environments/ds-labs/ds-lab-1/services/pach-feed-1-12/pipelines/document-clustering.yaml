@@ -26,13 +26,13 @@ spec:
   input:
     join:
       - repo: "clean-ingress-feed"
-        glob: "/*/*"
+        glob: "/*/(*)"
         branch: "master"
       - repo: "doc2vec-generator"
-        glob: "/*"
+        glob: "/(*)"
         branch: "master"
       - repo: "mention-typer"
-        glob: "/*/*"
+        glob: "/*/(*)"
         branch: "master"
 
   egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-document-clustering"
