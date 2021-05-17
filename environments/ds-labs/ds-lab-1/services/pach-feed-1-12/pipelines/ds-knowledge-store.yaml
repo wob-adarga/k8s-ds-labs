@@ -10,7 +10,7 @@ spec:
   description: clean-ingress-feed ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "clean-documents"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.19.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
 
     
   input:
@@ -19,8 +19,7 @@ spec:
       glob: "/*/*"
       branch: "master"
 
-  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-clean-documents
-  enable_stats: false
+  enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
 kind: PachydermPipeline
@@ -33,7 +32,7 @@ spec:
   description: sentence-extraction ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "sentence-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.19.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
 
     
     env:
@@ -48,8 +47,7 @@ spec:
       glob: "/*/*"
       branch: "master"
 
-  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-sentence-extraction
-  enable_stats: false
+  enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
 kind: PachydermPipeline
@@ -62,7 +60,7 @@ spec:
   description: event-detector ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "event-detector"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.19.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
 
     
     env:
@@ -77,8 +75,7 @@ spec:
       glob: "/*/*"
       branch: "master"
 
-  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-event-detector
-  enable_stats: false
+  enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
 kind: PachydermPipeline
@@ -91,7 +88,7 @@ spec:
   description: event-grouper ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "event-grouper"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.19.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
 
     
     env:
@@ -106,8 +103,7 @@ spec:
       glob: "/*/*"
       branch: "master"
 
-  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-event-grouper
-  enable_stats: false
+  enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
 kind: PachydermPipeline
@@ -120,7 +116,7 @@ spec:
   description: mention-extraction ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "mention-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.19.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
 
     
     env:
@@ -135,8 +131,7 @@ spec:
       glob: "/*/*"
       branch: "master"
 
-  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-mention-extraction
-  enable_stats: false
+  enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
 kind: PachydermPipeline
@@ -149,7 +144,7 @@ spec:
   description: mention-grouper ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "mention-grouper"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.19.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
 
     
     env:
@@ -164,8 +159,7 @@ spec:
       glob: "/*/*"
       branch: "master"
 
-  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-mention-grouper
-  enable_stats: false
+  enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
 kind: PachydermPipeline
@@ -178,7 +172,7 @@ spec:
   description: mention-typer ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "mention-typing"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.19.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
 
     
     env:
@@ -193,8 +187,7 @@ spec:
       glob: "/*/*"
       branch: "master"
 
-  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-mention-typer
-  enable_stats: false
+  enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
 kind: PachydermPipeline
@@ -207,7 +200,7 @@ spec:
   description: svo-extraction ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "svo-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.19.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.21.1
 
     
     env:
@@ -222,5 +215,4 @@ spec:
       glob: "/*/*"
       branch: "master"
 
-  egress: s3://adarga-ds-lab-1-pachyderm-egress/feed-svo-extraction
-  enable_stats: false
+  enable_stats: true
