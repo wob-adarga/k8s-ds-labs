@@ -17,13 +17,13 @@ spec:
         prometheus.io/scrape: 'true'
     spec:
       containers:
-        - name: webserver
-          image: nginxdemos/nginx-hello:latest
+        - name: dashboard
+          image: 382855879375.dkr.ecr.eu-west-2.amazonaws.com/dashboards/ks-dashboard:dev
           imagePullPolicy: Always
           ports:
             - name: http
-              containerPort: 8080
+              containerPort: 80
           resources:
             requests:
               cpu: 50m
-              memory: 2Gi
+              memory: 10Mi
