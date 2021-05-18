@@ -5,7 +5,7 @@ resources:
 images:
 - name: eu.gcr.io/adarga-docker/document-clustering-db-migration
   newName: eu.gcr.io/adarga-docker/document-clustering-db-migration
-  newTag: 1.3.4
+  newTag: 1.3.7
 - name: eu.gcr.io/adarga-docker/document-clustering-predict
   newName: eu.gcr.io/adarga-docker/document-clustering-predict
-  newTag: 1.3.4
+  newTag: 1.3.7
