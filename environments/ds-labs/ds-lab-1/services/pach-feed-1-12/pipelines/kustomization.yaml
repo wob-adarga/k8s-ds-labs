@@ -35,6 +35,13 @@ vars:
     apiVersion: v1
   fieldref:
     fieldpath: data.DOCUMENT_CLUSTERING_IMAGE
+- name: DOC2VEC_IMAGE
+  objref:
+    kind: ConfigMap
+    name: image-properties
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.DOC2VEC_IMAGE
 resources:
 - doc2vec.yaml
 - ds-knowledge-store.yaml
