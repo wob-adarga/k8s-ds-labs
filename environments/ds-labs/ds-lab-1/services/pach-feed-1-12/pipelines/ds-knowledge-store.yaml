@@ -9,6 +9,7 @@ spec:
   name: "bertee-model-weight-publisher"
   description: "bertee weights model to ecr publishing"
   transform:
+    cmd: ["/publish-model.sh"]
     image: eu.gcr.io/adarga-docker/ds-knowledge-store-publish:1.23.0
 
     env:
