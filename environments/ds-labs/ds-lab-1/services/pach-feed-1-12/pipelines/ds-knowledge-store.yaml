@@ -1,4 +1,28 @@
 ---
+# Source: ds-knowledge-store/templates/publish-model.yaml
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: "bertee-model-weight-publisher"
+  namespace: pach-feed-1-12
+spec:
+  name: "bertee-model-weight-publisher"
+  description: "bertee weights model to ecr publishing"
+  transform:
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-publish:1.20.2
+
+    env:
+      - name: AMW_DECRIPTION
+        value: Adarga trained weights for bertee classification
+      - name: ORAS_REPO_HEAD
+        value: 382855879375.dkr.ecr.eu-west-2.amazonaws.com/amw/bertee-weights-
+  input:
+    pfs:
+      repo: bertee-weights
+      glob: "/*"
+      branch: "master"
+  enable_stats: true
+---
 # Source: ds-knowledge-store/templates/transform.yaml
 kind: PachydermPipeline
 apiVersion: adarga.ai/v1alpha1
@@ -10,7 +34,7 @@ spec:
   description: clean-ingress-feed ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "clean-documents"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.23.0
 
     
   input:
@@ -32,7 +56,7 @@ spec:
   description: sentence-extraction ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "sentence-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.23.0
 
     
     env:
@@ -60,7 +84,7 @@ spec:
   description: event-detector ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "event-detector"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.23.0
 
     
     env:
@@ -88,7 +112,7 @@ spec:
   description: event-grouper ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "event-grouper"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.23.0
 
     
     env:
@@ -116,7 +140,7 @@ spec:
   description: mention-extraction ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "mention-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.23.0
 
     
     env:
@@ -144,7 +168,7 @@ spec:
   description: mention-grouper ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "mention-grouper"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.23.0
 
     
     env:
@@ -172,7 +196,7 @@ spec:
   description: mention-typer ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "mention-typing"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.23.0
 
     
     env:
@@ -200,7 +224,7 @@ spec:
   description: svo-extraction ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "service", "svo-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.22.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.23.0
 
     
     env:
