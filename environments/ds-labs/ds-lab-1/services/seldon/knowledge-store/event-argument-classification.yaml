@@ -25,7 +25,7 @@ spec:
                   - name: MODEL_NAME
                     value: EventArgumentClassification
                   - name: MODEL_DATA
-                    value: /models/event-argument-classification
+                    value: /models
 
                 volumeMounts:
                   - mountPath: /models
