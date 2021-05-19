@@ -12,4 +12,4 @@ resources:
 images:
 - name: eu.gcr.io/adarga-docker/ds-custom-entity-recogniser-dashboard
   newName: eu.gcr.io/adarga-docker/ds-custom-entity-recogniser-dashboard
-  newTag: 1.2.0-beta2
+  newTag: 1.2.0
