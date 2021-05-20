@@ -11,7 +11,7 @@ spec:
     image: $(EXTRACTIVE_SUMMARISATION_IMAGE)
     env:
       - name: SERVICE_URL_BASE
-        value: "http://doc2vec-default.seldon.svc.cluster.local:8000"
+        value: "http://extractive-summarisation-default.seldon.svc.cluster.local:8000"
       - name: SERVICE_ENDPOINT
         value: "api/v1.0/predictions"
       - name: INPUT_REPO
