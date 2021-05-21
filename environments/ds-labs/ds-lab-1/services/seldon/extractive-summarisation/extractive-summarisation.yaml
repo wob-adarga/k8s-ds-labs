@@ -1,0 +1,29 @@
+kind: SeldonDeployment
+apiVersion: machinelearning.seldon.io/v1
+metadata:
+  name: extractive-summarisation
+  namespace: seldon
+  labels: {}
+spec:
+  name: extractive-summarisation
+  protocol: seldon
+  annotations: {}
+  predictors:
+    - name: default
+      graph:
+        name: extractive-summarisation
+        type: MODEL
+        parameters:
+          - name: 'ratio'
+            value: 0.2
+            type: DOUBLE
+
+      componentSpecs:
+        - spec:
+            containers:
+              - name: doc2vec
+                image: eu.gcr.io/adarga-docker/ds-extractive-summarisation-predict:from_kustomize
+                env:
+                  - name: LOG_LEVEL
+                    value: INFO
+          replicas: 1
