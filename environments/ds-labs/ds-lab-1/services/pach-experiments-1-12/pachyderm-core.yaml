@@ -176,7 +176,7 @@ spec:
       containers:
       - args:
         - '"/usr/local/bin/etcd" "--listen-client-urls=http://0.0.0.0:2379" "--advertise-client-urls=http://0.0.0.0:2379"
-          "--data-dir=/var/data/etcd" "--auto-compaction-retention=1" "--max-txn-ops=30000"
+          "--data-dir=/var/data/etcd" "--auto-compaction-retention=1" "--max-txn-ops=10000"
           "--max-request-bytes=52428800" "--quota-backend-bytes=8589934592" "--listen-peer-urls=http://0.0.0.0:2380"
           "--initial-cluster-token=pach-cluster" "--initial-advertise-peer-urls=http://${ETCD_NAME}.etcd-headless.${NAMESPACE}.svc.cluster.local:2380"
           "--initial-cluster=etcd-0=http://etcd-0.etcd-headless.${NAMESPACE}.svc.cluster.local:2380"'
@@ -363,16 +363,16 @@ spec:
           value: AMAZON
         - name: STORAGE_HOST_PATH
         - name: WORKER_IMAGE
-          value: pachyderm/worker:1.13.0
+          value: pachyderm/worker:1.13.2
         - name: IMAGE_PULL_SECRET
         - name: WORKER_SIDECAR_IMAGE
-          value: pachyderm/pachd:1.13.0
+          value: pachyderm/pachd:1.13.2
         - name: WORKER_IMAGE_PULL_POLICY
           value: IfNotPresent
         - name: WORKER_SERVICE_ACCOUNT
           value: pachyderm-worker
         - name: PACHD_VERSION
-          value: 1.13.0
+          value: 1.13.2
         - name: METRICS
           value: "true"
         - name: LOG_LEVEL
@@ -399,7 +399,7 @@ spec:
         - name: EXPOSE_OBJECT_API
           value: "false"
         - name: CLUSTER_DEPLOYMENT_ID
-          value: 621b577450c94a3083844fd6466df302
+          value: 7463c6c639e44de38e040d2d75a6b082
         - name: REQUIRE_CRITICAL_SERVERS_ONLY
           value: "false"
         - name: PACHD_POD_NAME
@@ -595,7 +595,7 @@ spec:
           value: "100"
         - name: STORAGE_V2
           value: "false"
-        image: pachyderm/pachd:1.13.0
+        image: pachyderm/pachd:1.13.2
         imagePullPolicy: IfNotPresent
         name: pachd
         ports:
