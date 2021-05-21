@@ -4,8 +4,9 @@ metadata:
   name: pachd-ilb
   namespace: pach-experiments-1-12
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: nlb
-    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internal
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
     external-dns.alpha.kubernetes.io/hostname: pachd-experiments.ds-lab-1.datascience.adarga.dev
 spec:
   ports:
