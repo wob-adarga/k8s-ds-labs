@@ -15,7 +15,7 @@ spec:
         type: MODEL
         parameters:
           - name: 'ratio'
-            value: 0.2
+            value: '0.2'
             type: DOUBLE
 
       componentSpecs:
