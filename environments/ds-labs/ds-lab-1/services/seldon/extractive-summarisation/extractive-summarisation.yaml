@@ -21,7 +21,7 @@ spec:
       componentSpecs:
         - spec:
             containers:
-              - name: doc2vec
+              - name: extractive-summarisation
                 image: eu.gcr.io/adarga-docker/ds-extractive-summarisation-predict:from_kustomize
                 env:
                   - name: LOG_LEVEL
