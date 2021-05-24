@@ -9,6 +9,7 @@ resources:
   - ./sentencification
   - ./document-clustering
   - ./document-clustering-db.yaml
+  - ./extractive-summarisation
 configurations:
 - kustomizeconfig/seldondeployment.yaml
 configMapGenerator:
