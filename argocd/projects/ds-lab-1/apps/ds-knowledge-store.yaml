@@ -17,7 +17,7 @@ spec:
   source:
     repoURL: git@github.com:Adarga-Ltd/k8s-ds-labs.git
     targetRevision: HEAD
-    path: environments/ds-labs/ds-lab-1/services/ds-knowledge-store
+    chart: environments/ds-labs/ds-lab-1/services/ds-knowledge-store
 
   # Destination cluster and namespace to deploy the application
   destination:
