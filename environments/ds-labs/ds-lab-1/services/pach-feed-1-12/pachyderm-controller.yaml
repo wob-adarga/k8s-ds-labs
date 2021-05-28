@@ -22,7 +22,7 @@ rules:
       - update
       - patch
       - delete
-  - apiGroup: [""]
+  - apiGroups: [""]
     resources:
       - replicationcontrollers
     verbs:
