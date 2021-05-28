@@ -16,7 +16,6 @@ spec:
   # Source of the application manifests
   source:
     repoURL: git@github.com:Adarga-Ltd/k8s-ds-labs.git
-    targetRevision: HEAD
     chart: environments/ds-labs/ds-lab-1/services/ds-knowledge-store
 
   # Destination cluster and namespace to deploy the application
