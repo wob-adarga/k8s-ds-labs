@@ -16,7 +16,7 @@ spec:
       componentSpecs:
         - spec:
             containers:
-              - name: event-grouper
+              - name: event-mention-coreference
                 image: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon:from_kustomize
                 env:
                   - name: LOG_LEVEL

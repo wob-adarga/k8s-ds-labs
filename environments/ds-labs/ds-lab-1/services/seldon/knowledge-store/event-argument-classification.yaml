@@ -16,7 +16,7 @@ spec:
       componentSpecs:
         - spec:
             containers:
-              - name: event-argument-classifier
+              - name: event-argument-classification
                 image: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon-bertee:from_kustomize
                 env:
                   - name: LOG_LEVEL
