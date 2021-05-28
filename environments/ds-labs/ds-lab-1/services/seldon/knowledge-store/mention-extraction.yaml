@@ -1,11 +1,11 @@
 kind: SeldonDeployment
 apiVersion: machinelearning.seldon.io/v1
 metadata:
-  name: mentionextraction
+  name: mention-extraction
   namespace: seldon
   labels: {}
 spec:
-  name: mentionextraction
+  name: mention-extraction
   protocol: seldon
   annotations: {}
   predictors:
@@ -13,7 +13,6 @@ spec:
       graph:
         name: mention-extraction
         type: MODEL
-
       componentSpecs:
         - spec:
             containers:
@@ -23,14 +22,12 @@ spec:
                   - name: LOG_LEVEL
                     value: INFO
                   - name: MODEL_NAME
-                    value: MentionExtractor
+                    value: MentionExtraction
                   - name: MODEL_DATA
                     value: /models/en_core_web_sm-2.3.1
-
                 volumeMounts:
                   - mountPath: /models
                     name: model-data
-
             initContainers:
               - name: spacy-initialiser
                 image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
@@ -56,14 +53,11 @@ spec:
                     cd /models
                     oras pull ${AWS_ECR}/omw/spacy-small-2-3:${OMWVERSION} --allow-all
                     tar -xf models/spacy-small-2-3/weights.tar.gz --strip-components 2
-
                     echo "done"
-
                 volumeMounts:
                   - mountPath: /models
                     name: model-data
             volumes:
               - emptyDir: {}
                 name: model-data
-
           replicas: 1
