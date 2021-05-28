@@ -1,28 +1,28 @@
 kind: SeldonDeployment
 apiVersion: machinelearning.seldon.io/v1
 metadata:
-  name: event-detection
+  name: naive-event-detection
   namespace: seldon
   labels: {}
 spec:
-  name: event-detection
+  name: naive-event-detection
   protocol: seldon
   annotations: {}
   predictors:
     - name: default
       graph:
-        name: event-detection
+        name: naive-event-detection
         type: MODEL
       componentSpecs:
         - spec:
             containers:
-              - name: event-detection
+              - name: naive-event-detection
                 image: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon:from_kustomize
                 env:
                   - name: LOG_LEVEL
                     value: INFO
                   - name: MODEL_NAME
-                    value: EventDetection
+                    value: NaiveEventDetection
                   - name: MODEL_DATA
                     value: /models/en_core_web_sm-2.3.1
                 volumeMounts:
