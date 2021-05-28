@@ -13,6 +13,7 @@ rules:
   - apiGroups: ["adarga.ai"]
     resources:
       - pachydermpipelines
+      - pachydermpipelines/status
     verbs:
       - get
       - list
