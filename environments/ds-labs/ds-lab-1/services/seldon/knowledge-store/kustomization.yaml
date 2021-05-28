@@ -6,7 +6,7 @@ resources:
 - mention-coreference.yaml
 - sentence-extraction.yaml
 - svo-extraction.yaml
-- event-detection.yaml
+- naive-event-detection.yaml
 - event-mention-coreference.yaml
 - event-trigger-detection.yaml
 - event-classification.yaml
