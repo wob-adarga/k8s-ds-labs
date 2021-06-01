@@ -19,7 +19,7 @@ spec:
         - spec:
             containers:
               - name: ds-rule-entity-recogniser-predict
-                image: eu.gcr.io/adarga-docker/ds-rule-entity-recogniser-predict:1.0.2
+                image: eu.gcr.io/adarga-docker/ds-rule-entity-recogniser-predict:from_kustomize
                 env:
                   - name: LOGGING_CONFIG
                     value: "/app/logging.conf"
@@ -47,11 +47,11 @@ spec:
                 image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
                 imagePullPolicy: IfNotPresent
                 env:
-                  # - name: GAZETTEER_VERSION
-                  #   valueFrom:
-                  #     configMapKeyRef:
-                  #       name: adarga-model-weights-config
-                  #       key: GAZETTEER_VERSION
+                  - name: GAZETTEER_VERSION
+                    valueFrom:
+                      configMapKeyRef:
+                        name: adarga-model-weights-config
+                        key: GAZETTEER_VERSION
                   - name: AWS_ECR
                     valueFrom:
                       configMapKeyRef:
@@ -66,9 +66,9 @@ spec:
                     oras-aws-ecr-login
                     echo "downloading model"
                     cd /patterns
-                    oras pull ${AWS_ECR}/amw/overwriting-patterns:v1.0.0 --allow-all
-                    oras pull ${AWS_ECR}/amw/non-overwriting-patterns:v1.0.0 --allow-all
-                    oras pull ${AWS_ECR}/amw/regex-patterns:v1.0.0 --allow-all
+                    oras pull ${AWS_ECR}/amw/overwriting-patterns:${GAZETTEER_VERSION} --allow-all
+                    oras pull ${AWS_ECR}/amw/non-overwriting-patterns:${GAZETTEER_VERSION} --allow-all
+                    oras pull ${AWS_ECR}/amw/regex-patterns:${GAZETTEER_VERSION} --allow-all
                     echo "done"
 
                 volumeMounts:
