@@ -49,15 +49,20 @@ vars:
     apiVersion: v1
     kind: ConfigMap
     name: image-properties
-  fieldref:
-    fieldpath: data.BASE_ENTITY_RECOGNISER_IMAGE
-- name: EXTRACTIVE_SUMMARISATION_IMAGE
+- fieldref:
+    fieldpath: data.EXTRACTIVE_SUMMARISATION_IMAGE
+  name: EXTRACTIVE_SUMMARISATION_IMAGE
   objref:
     kind: ConfigMap
     name: image-properties
     apiVersion: v1
-  fieldref:
-    fieldpath: data.EXTRACTIVE_SUMMARISATION_IMAGE
+- fieldref:
+    fieldPath: data.RULE_ENTITY_RECOGNISER_IMAGE
+  name: RULE_ENTITY_RECOGNISER_IMAGE
+  objref:
+    apiVersion: v1
+    kind: ConfigMap
+    name: image-properties
 resources:
 - doc2vec.yaml
 - ds-knowledge-store.yaml
