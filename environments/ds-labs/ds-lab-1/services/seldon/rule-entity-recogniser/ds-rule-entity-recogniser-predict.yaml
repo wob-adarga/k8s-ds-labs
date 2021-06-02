@@ -1,0 +1,80 @@
+---
+kind: SeldonDeployment
+apiVersion: machinelearning.seldon.io/v1
+metadata:
+  name: ds-rule-entity-recogniser-predict
+  namespace: seldon
+  labels: {}
+spec:
+  name: ds-rule-entity-recogniser-predict
+  protocol: seldon
+  annotations: {}
+  predictors:
+    - name: default
+      graph:
+        name: ds-rule-entity-recogniser-predict
+        type: MODEL
+
+      componentSpecs:
+        - spec:
+            containers:
+              - name: ds-rule-entity-recogniser-predict
+                image: eu.gcr.io/adarga-docker/ds-rule-entity-recogniser-predict:from_kustomize
+                env:
+                  - name: LOGGING_CONFIG
+                    value: "/app/logging.conf"
+                  - name: LOG_LEVEL
+                    value: INFO
+                  - name: TRACING
+                    value: '1'
+                  - name: JAEGER_AGENT_HOST
+                    value: jaeger-agent.observability.svc.cluster.local
+                  - name: JAEGER_AGENT_PORT
+                    value: '5775'
+                  - name: JAEGER_SAMPLER_TYPE
+                    value: const
+                  - name: JAEGER_SAMPLER_PARAM
+                    value: '1'
+                resources:
+                  requests:
+                    memory: 1Gi
+                volumeMounts:
+                  - mountPath: /app/patterns
+                    name: patterns
+
+            initContainers:
+              - name: gazetteers-initialiser
+                image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
+                imagePullPolicy: IfNotPresent
+                env:
+                  - name: GAZETTEER_VERSION
+                    valueFrom:
+                      configMapKeyRef:
+                        name: adarga-model-weights-config
+                        key: GAZETTEER_VERSION
+                  - name: AWS_ECR
+                    valueFrom:
+                      configMapKeyRef:
+                        name: adarga-model-weights-config-h4696f728g
+                        key: AWS_ECR
+
+                command:
+                  - /bin/sh
+                  - -xc
+                  - |
+                    export HOME=/tmp # to workaround privileged execution issues
+                    oras-aws-ecr-login
+                    echo "downloading model"
+                    cd /patterns
+                    oras pull ${AWS_ECR}/amw/overwriting-patterns:${GAZETTEER_VERSION} --allow-all
+                    oras pull ${AWS_ECR}/amw/non-overwriting-patterns:${GAZETTEER_VERSION} --allow-all
+                    oras pull ${AWS_ECR}/amw/regex-patterns:${GAZETTEER_VERSION} --allow-all
+                    echo "done"
+
+                volumeMounts:
+                  - mountPath: /patterns
+                    name: patterns
+            volumes:
+              - emptyDir: {}
+                name: patterns
+      replicas: 1
