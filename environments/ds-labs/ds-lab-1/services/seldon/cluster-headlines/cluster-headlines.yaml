@@ -1,0 +1,51 @@
+kind: SeldonDeployment
+apiVersion: machinelearning.seldon.io/v1
+metadata:
+  name: cluster-headlines
+  namespace: seldon
+  labels: {}
+spec:
+  name: cluster-headlines
+  protocol: seldon
+  annotations: {}
+  predictors:
+    - name: default
+      graph:
+        name: cluster-headlines
+        type: MODEL
+
+      componentSpecs:
+        - spec:
+            containers:
+              - name: cluster-headlines
+                image: eu.gcr.io/adarga-docker/ds-cluster-headlines-predict:from_kustomize
+                env:
+                  - name: LOG_LEVEL
+                    value: INFO
+                  - name: PGHOST
+                    valueFrom:
+                      configMapKeyRef:
+                        key: DB_CONN
+                        name: document-clustering-db-credentials
+                  - name: PGPORT
+                    valueFrom:
+                      configMapKeyRef:
+                        key: DB_PORT
+                        name: document-clustering-db-credentials
+                  - name: PGUSER
+                    valueFrom:
+                      secretKeyRef:
+                        key: POSTGRES_USER
+                        name: document-clustering-db-credentials
+                  - name: PGDATABASE
+                    valueFrom:
+                      secretKeyRef:
+                        key: POSTGRES_DB
+                        name: document-clustering-db-credentials
+                  - name: PGPASSWORD
+                    valueFrom:
+                      secretKeyRef:
+                        key: POSTGRES_PASSWORD
+                        name: document-clustering-db-credentials
+
+          replicas: 1

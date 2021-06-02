@@ -58,6 +58,13 @@ vars:
     apiVersion: v1
   fieldref:
     fieldpath: data.EXTRACTIVE_SUMMARISATION_IMAGE
+- name: CLUSTER_HEADLINE_IMAGE
+  objref:
+    kind: ConfigMap
+    name: image-properties
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.CLUSTER_HEADLINE_IMAGE
 resources:
 - doc2vec.yaml
 - ds-knowledge-store.yaml
@@ -66,4 +73,5 @@ resources:
 - document-clustering.yaml
 - base-entity-recogniser.yaml
 - extractive-summarisation.yaml
+- cluster-headlines.yaml
 
