@@ -63,6 +63,13 @@ vars:
     apiVersion: v1
     kind: ConfigMap
     name: image-properties
+- fieldref:
+    fieldPath: data.ENTITY_CLEANER_IMAGE
+  name: ENTITY_CLEANER_IMAGE
+  objref:
+    apiVersion: v1
+    kind: ConfigMap
+    name: image-properties
 resources:
 - doc2vec.yaml
 - ds-knowledge-store.yaml
@@ -71,4 +78,5 @@ resources:
 - document-clustering.yaml
 - base-entity-recogniser.yaml
 - extractive-summarisation.yaml
+- ds-entity-cleaning.yaml
 
