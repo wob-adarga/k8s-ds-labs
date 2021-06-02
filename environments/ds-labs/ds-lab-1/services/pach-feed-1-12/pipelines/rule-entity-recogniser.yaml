@@ -1,17 +1,17 @@
 kind: PachydermPipeline
 apiVersion: adarga.ai/v1alpha1
 metadata:
-  name: base-entity-recogniser
+  name: rule-entity-recogniser
   namespace: pach-feed-1-12
 spec:
-  name: base-entity-recogniser
-  description: "Base entity recogniser pipeline. (Controller)"
+  name: rule-entity-recogniser
+  description: "Rule entity recogniser pipeline. (Controller)"
   transform:
-    cmd: ["python3", "EntityRecogniserPipeline.py"]
-    image: $(BASE_ENTITY_RECOGNISER_IMAGE)
+    cmd: ["python3", "RuleEntityRecogniserPipeline.py"]
+    image: $(RULE_ENTITY_RECOGNISER_IMAGE)
     env:
       - name: SERVICE_URL_BASE
-        value: "http://ds-base-entity-recogniser-ner-predict-default.seldon.svc.cluster.local:8000"
+        value: "http://ds-rule-entity-recogniser-predict-default.seldon.svc.cluster.local:8000"
       - name: SERVICE_ENDPOINT
         value: "api/v1.0/predictions"
       - name: SENTENCES_REPO
@@ -25,5 +25,5 @@ spec:
       glob: "/*/(*).jsonl"
       branch: "master"
 
-  egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-base-entity-recogniser"
+  egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-rule-entity-recogniser"
   enable_stats: false
