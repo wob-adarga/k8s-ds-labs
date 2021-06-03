@@ -16,6 +16,6 @@ spec:
       componentSpecs:
         - spec:
             containers:
-              - name: ds-entity-cleaner
+              - name: ds-entity-cleaning
                 image: eu.gcr.io/adarga-docker/ds-entity-cleaning-predict:from_kustomize
       replicas: 1
