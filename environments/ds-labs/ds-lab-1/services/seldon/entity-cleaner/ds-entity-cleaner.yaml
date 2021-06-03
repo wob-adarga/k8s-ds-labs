@@ -18,13 +18,4 @@ spec:
             containers:
               - name: ds-entity-cleaner
                 image: eu.gcr.io/adarga-docker/ds-entity-cleaning-predict:from_kustomize
-                env:
-                  - name: TRANSFORMERS_CACHE
-                    value: "/tmp/.transformers_cache"
-                resources:
-                  requests:
-                    memory: 1Gi
-                volumeMounts:
-                  - mountPath: /models
-                    name: model-data
       replicas: 1
