@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
 - ds-base-entity-recogniser-ner-predict.yaml
 images:
-- name: eu.gcr.io/adarga-docker/ds-entity-cleaning
+- name: eu.gcr.io/adarga-docker/ds-entity-cleaning-predict
   newTag: 1.0.2
