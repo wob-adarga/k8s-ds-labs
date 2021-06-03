@@ -56,8 +56,6 @@ vars:
     kind: ConfigMap
     name: image-properties
     apiVersion: v1
-  fieldref:
-    fieldpath: data.EXTRACTIVE_SUMMARISATION_IMAGE
 - fieldref:
     fieldPath: data.RULE_ENTITY_RECOGNISER_IMAGE
   name: RULE_ENTITY_RECOGNISER_IMAGE
