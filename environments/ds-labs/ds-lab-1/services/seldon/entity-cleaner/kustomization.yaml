@@ -4,4 +4,4 @@ resources:
 - ./ds-entity-cleaner.yaml
 images:
 - name: eu.gcr.io/adarga-docker/ds-entity-cleaning-predict
-  newTag: 1.0.2
+  newTag: 1.2.0
