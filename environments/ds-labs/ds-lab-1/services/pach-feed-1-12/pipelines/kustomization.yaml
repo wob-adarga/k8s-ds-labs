@@ -50,7 +50,7 @@ vars:
     kind: ConfigMap
     name: image-properties
 - fieldref:
-    fieldpath: data.EXTRACTIVE_SUMMARISATION_IMAGE
+    fieldPath: data.EXTRACTIVE_SUMMARISATION_IMAGE
   name: EXTRACTIVE_SUMMARISATION_IMAGE
   objref:
     kind: ConfigMap
@@ -70,13 +70,13 @@ vars:
     apiVersion: v1
     kind: ConfigMap
     name: image-properties
-- name: CLUSTER_HEADLINE_IMAGE
+- fieldref:
+    fieldPath: data.CLUSTER_HEADLINE_IMAGE
+  name: CLUSTER_HEADLINE_IMAGE
   objref:
     kind: ConfigMap
     name: image-properties
     apiVersion: v1
-  fieldref:
-    fieldpath: data.CLUSTER_HEADLINE_IMAGE
 resources:
 - doc2vec.yaml
 - ds-knowledge-store.yaml
