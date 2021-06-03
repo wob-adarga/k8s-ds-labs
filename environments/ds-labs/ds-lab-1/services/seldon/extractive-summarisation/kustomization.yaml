@@ -5,4 +5,4 @@ resources:
 images:
 - name: eu.gcr.io/adarga-docker/ds-extractive-summarisation-predict
   newName: eu.gcr.io/adarga-docker/ds-extractive-summarisation-predict
-  newTag: 1.1.1
+  newTag: 1.1.2
