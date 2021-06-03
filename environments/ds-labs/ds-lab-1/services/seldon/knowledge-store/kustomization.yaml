@@ -1,20 +1,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- mention-typer.yaml
+- mention-typing.yaml
 - mention-extraction.yaml
-- mention-grouper.yaml
+- mention-coreference.yaml
 - sentence-extraction.yaml
 - svo-extraction.yaml
-- event-detector.yaml
-- event-grouper.yaml
-- event-trigger-detector.yaml
+- naive-event-detection.yaml
+- event-mention-coreference.yaml
+- event-trigger-detection.yaml
 - event-classification.yaml
 - event-argument-classification.yaml
 images:
 - name: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
   newName: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon
-  newTag: 1.23.5
+  newTag: 1.24.0
 - name: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon-bertee
   newName: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon-bertee
-  newTag: 1.23.5
+  newTag: 1.24.0

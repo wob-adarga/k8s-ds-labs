@@ -14,7 +14,6 @@ spec:
       graph:
         name: sentence-extraction
         type: MODEL
-
       componentSpecs:
         - spec:
             containers:
@@ -24,14 +23,12 @@ spec:
                   - name: LOG_LEVEL
                     value: INFO
                   - name: MODEL_NAME
-                    value: SentenceExtractor
+                    value: SentenceExtraction
                   - name: MODEL_DATA
                     value: /models/models/nltk-punkt-english/english.pickle
-
                 volumeMounts:
                   - mountPath: /models
                     name: model-data
-
             initContainers:
               - name: nltk-initialiser
                 image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
@@ -47,7 +44,6 @@ spec:
                       configMapKeyRef:
                         name: opensource-model-weights-config
                         key: AWS_ECR
-
                 command:
                   - /bin/sh
                   - -xc
@@ -58,17 +54,10 @@ spec:
                     cd /models
                     oras pull ${AWS_ECR}/omw/nltk-punkt-english:${OMWVERSION} --allow-all
                     echo "done"
-
                 volumeMounts:
                   - mountPath: /models
                     name: model-data
-
-                resources:
-                  requests:
-                    memory: 1Mi
-
             volumes:
               - emptyDir: {}
                 name: model-data
-
-      replicas: 1
+          replicas: 1

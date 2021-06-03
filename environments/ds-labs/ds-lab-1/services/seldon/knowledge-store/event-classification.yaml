@@ -1,23 +1,22 @@
 kind: SeldonDeployment
 apiVersion: machinelearning.seldon.io/v1
 metadata:
-  name: event-classifier
+  name: event-classification
   namespace: seldon
   labels: {}
 spec:
-  name: event-classifier
+  name: event-classification
   protocol: seldon
   annotations: {}
   predictors:
     - name: default
       graph:
-        name: event-classifier
+        name: event-classification
         type: MODEL
-
       componentSpecs:
         - spec:
             containers:
-              - name: event-classifier
+              - name: event-classification
                 image: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon-bertee:from_kustomize
                 env:
                   - name: LOG_LEVEL
@@ -26,11 +25,9 @@ spec:
                     value: EventClassification
                   - name: MODEL_DATA
                     value: /models
-
                 volumeMounts:
                   - mountPath: /models
                     name: model-data
-
             initContainers:
               - name: bertee-event-classification-initialiser
                 image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
@@ -57,12 +54,10 @@ spec:
                     oras pull ${AWS_ECR}/amw/bertee-weights-event-classification:${PACH_JOB_ID} --allow-all
                     tar -xf model.tgz
                     echo "done"
-
                 volumeMounts:
                   - mountPath: /models
                     name: model-data
             volumes:
               - emptyDir: {}
                 name: model-data
-
           replicas: 1

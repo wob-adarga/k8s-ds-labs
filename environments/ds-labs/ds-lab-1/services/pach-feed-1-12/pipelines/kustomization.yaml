@@ -49,15 +49,29 @@ vars:
     apiVersion: v1
     kind: ConfigMap
     name: image-properties
-  fieldref:
-    fieldpath: data.BASE_ENTITY_RECOGNISER_IMAGE
-- name: EXTRACTIVE_SUMMARISATION_IMAGE
+- fieldref:
+    fieldpath: data.EXTRACTIVE_SUMMARISATION_IMAGE
+  name: EXTRACTIVE_SUMMARISATION_IMAGE
   objref:
     kind: ConfigMap
     name: image-properties
     apiVersion: v1
   fieldref:
     fieldpath: data.EXTRACTIVE_SUMMARISATION_IMAGE
+- fieldref:
+    fieldPath: data.RULE_ENTITY_RECOGNISER_IMAGE
+  name: RULE_ENTITY_RECOGNISER_IMAGE
+  objref:
+    apiVersion: v1
+    kind: ConfigMap
+    name: image-properties
+- fieldref:
+    fieldPath: data.ENTITY_CLEANER_IMAGE
+  name: ENTITY_CLEANER_IMAGE
+  objref:
+    apiVersion: v1
+    kind: ConfigMap
+    name: image-properties
 - name: CLUSTER_HEADLINE_IMAGE
   objref:
     kind: ConfigMap
@@ -73,5 +87,5 @@ resources:
 - document-clustering.yaml
 - base-entity-recogniser.yaml
 - extractive-summarisation.yaml
+- ds-entity-cleaning.yaml
 - cluster-headlines.yaml
-

@@ -1,38 +1,33 @@
 kind: SeldonDeployment
 apiVersion: machinelearning.seldon.io/v1
 metadata:
-  name: mentiongrouper
+  name: mention-coreference
   namespace: seldon
   labels: {}
 spec:
-  name: mentiongrouper
+  name: mention-coreference
   protocol: seldon
   annotations: {}
   predictors:
     - name: default
       graph:
-        name: model
+        name: mention-coreference
         type: MODEL
       componentSpecs:
         - spec:
             containers:
-              - name: model
+              - name: mention-coreference
                 image: eu.gcr.io/adarga-docker/ds-knowledge-store-seldon:from_kustomize
                 env:
                   - name: LOG_LEVEL
                     value: INFO
                   - name: MODEL_NAME
-                    value: MentionGrouper
+                    value: MentionCoreference
                   - name: MODEL_DATA
                     value: /models/en_core_web_sm-2.3.1
-
-                resources:
-                  requests:
-                    memory: 1Mi
                 volumeMounts:
                   - mountPath: /models
                     name: model-data
-
             initContainers:
               - name: spacy-initialiser
                 image: eu.gcr.io/adarga-docker/toolbox/oras:0.10.0-b
@@ -48,8 +43,6 @@ spec:
                       configMapKeyRef:
                         name: opensource-model-weights-config
                         key: AWS_ECR
-
-
                 command:
                   - /bin/sh
                   - -xc
@@ -61,11 +54,10 @@ spec:
                     oras pull ${AWS_ECR}/omw/spacy-small-2-3:${OMWVERSION} --allow-all
                     tar -xf models/spacy-small-2-3/weights.tar.gz --strip-components 2
                     echo "done"
-
                 volumeMounts:
                   - mountPath: /models
                     name: model-data
             volumes:
               - emptyDir: {}
                 name: model-data
-      replicas: 1
+          replicas: 1

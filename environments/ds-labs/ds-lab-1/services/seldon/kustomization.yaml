@@ -10,6 +10,7 @@ resources:
   - ./document-clustering
   - ./document-clustering-db.yaml
   - ./extractive-summarisation
+  - ./rule-entity-recogniser
   - ./cluster-headlines
 configurations:
 - kustomizeconfig/seldondeployment.yaml
