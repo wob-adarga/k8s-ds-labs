@@ -1,0 +1,21 @@
+kind: SeldonDeployment
+apiVersion: machinelearning.seldon.io/v1
+metadata:
+  name: ds-entity-cleaning
+  namespace: seldon
+  labels: {}
+spec:
+  name: ds-entity-cleaning
+  protocol: seldon
+  annotations: {}
+  predictors:
+    - name: default
+      graph:
+        name: ds-entity-cleaning
+        type: MODEL
+      componentSpecs:
+        - spec:
+            containers:
+              - name: ds-entity-cleaning
+                image: eu.gcr.io/adarga-docker/ds-entity-cleaning-predict:from_kustomize
+      replicas: 1

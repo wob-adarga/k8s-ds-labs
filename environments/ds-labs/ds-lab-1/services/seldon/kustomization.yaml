@@ -11,7 +11,9 @@ resources:
   - ./document-clustering-db.yaml
   - ./extractive-summarisation
   - ./rule-entity-recogniser
+  - ./entity-cleaner
   - ./cluster-headlines
+
 configurations:
 - kustomizeconfig/seldondeployment.yaml
 configMapGenerator:
@@ -23,4 +25,3 @@ configMapGenerator:
   envs:
   - adarga-model-weights.properties
   namespace: seldon
-
