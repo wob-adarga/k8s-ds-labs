@@ -10,7 +10,7 @@ spec:
   description: "bertee weights model to ecr publishing"
   transform:
     cmd: ["/publish-model.sh"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-publish-model:1.24.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-publish-model:1.25.0
 
     env:
       - name: AMW_DECRIPTION
@@ -35,7 +35,7 @@ spec:
   description: document-standardisation ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "transforms", "document-standardisation"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.24.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.25.0
 
     
   input:
@@ -57,7 +57,7 @@ spec:
   description: sentence-extraction ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "transforms", "sentence-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.24.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.25.0
 
     
     env:
@@ -85,7 +85,7 @@ spec:
   description: naive-event-detection ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "transforms", "naive-event-detection"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.24.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.25.0
 
     
     env:
@@ -113,7 +113,7 @@ spec:
   description: event-mention-coreference ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "transforms", "event-mention-coreference"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.24.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.25.0
 
     
     env:
@@ -141,7 +141,7 @@ spec:
   description: mention-extraction ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "transforms", "mention-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.24.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.25.0
 
     
     env:
@@ -169,7 +169,7 @@ spec:
   description: mention-coreference ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "transforms", "mention-coreference"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.24.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.25.0
 
     
     env:
@@ -197,7 +197,7 @@ spec:
   description: mention-typing ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "transforms", "mention-typing"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.24.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.25.0
 
     
     env:
@@ -225,7 +225,7 @@ spec:
   description: svo-extraction ds-knowledge-store transform
   transform:
     cmd: ["python3", "-m", "transforms", "svo-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.24.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.25.0
 
     
     env:
