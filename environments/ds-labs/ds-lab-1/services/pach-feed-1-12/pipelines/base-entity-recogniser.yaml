@@ -26,4 +26,4 @@ spec:
       branch: "master"
 
   egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-base-entity-recogniser"
-  enable_stats: false
+  enable_stats: true
