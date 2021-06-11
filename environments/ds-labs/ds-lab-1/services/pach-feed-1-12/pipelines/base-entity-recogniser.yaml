@@ -7,7 +7,7 @@ spec:
   name: base-entity-recogniser
   description: "Base entity recogniser pipeline. (Controller)"
   transform:
-    cmd: ["python3", "EntityRecogniserPipeline.py"]
+    cmd: ["python3", "EntityRecognizerPipeline.py"]
     image: $(BASE_ENTITY_RECOGNISER_IMAGE)
     env:
       - name: SERVICE_URL_BASE
