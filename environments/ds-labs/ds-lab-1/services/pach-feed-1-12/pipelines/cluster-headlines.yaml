@@ -7,7 +7,7 @@ spec:
   name: cluster-headlines
   description: "cluster headlines generator pipeline. Calls Seldon, Returns embedding. (Controller)"
   transform:
-    cmd: ["python3", "ClusterHeadlinePipeline.py"]
+    cmd: ["python3", "ClusterHeadlineGeneratorPipeline.py"]
     image: $(CLUSTER_HEADLINE_IMAGE)
     env:
       - name: SERVICE_URL_BASE
