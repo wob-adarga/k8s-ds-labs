@@ -12,6 +12,8 @@ resources:
   - ./extractive-summarisation
   - ./rule-entity-recogniser
   - ./entity-cleaner
+  - ./cluster-headlines
+
 configurations:
 - kustomizeconfig/seldondeployment.yaml
 configMapGenerator:

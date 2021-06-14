@@ -1,0 +1,28 @@
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: cluster-headlines
+  namespace: pach-feed-1-12
+spec:
+  name: cluster-headlines
+  description: "cluster headlines generator pipeline. Calls Seldon, Returns embedding. (Controller)"
+  transform:
+    cmd: ["python3", "ClusterHeadlinePipeline.py"]
+    image: $(CLUSTER_HEADLINES_IMAGE)
+    env:
+      - name: SERVICE_URL_BASE
+        value: "http://cluster-headlines-default.seldon.svc.cluster.local:8000"
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+      - name: INPUT_REPO
+        value: "/pfs/document-clustering"
+      - name: OUTPUT_REPO
+        value: "/pfs/out"
+  input:
+    pfs:
+      repo: "document-clustering"
+      glob: "/*/*"
+      branch: "master"
+
+  egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-cluster-headlines"
+  enable_stats: false
