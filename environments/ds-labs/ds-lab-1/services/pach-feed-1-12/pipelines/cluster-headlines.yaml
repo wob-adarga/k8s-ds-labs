@@ -8,7 +8,7 @@ spec:
   description: "cluster headlines generator pipeline. Calls Seldon, Returns embedding. (Controller)"
   transform:
     cmd: ["python3", "ClusterHeadlinePipeline.py"]
-    image: $(CLUSTER_HEADLINES_IMAGE)
+    image: $(CLUSTER_HEADLINE_IMAGE)
     env:
       - name: SERVICE_URL_BASE
         value: "http://cluster-headlines-default.seldon.svc.cluster.local:8000"
