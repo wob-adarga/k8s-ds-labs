@@ -5,4 +5,4 @@ resources:
 images:
 - name: eu.gcr.io/adarga-docker/ds-cluster-headlines-predict
   newName: eu.gcr.io/adarga-docker/ds-cluster-headlines-predict
-  newTag: 1.0.0
+  newTag: 1.0.1
