@@ -31,5 +31,4 @@ spec:
         glob: "/*/(*).jsonl"
         branch: "master"
 
-  egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-future-signals-classifier"
-  enable_stats: false
+  enable_stats: true

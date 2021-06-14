@@ -7,7 +7,7 @@ spec:
   name: base-entity-recogniser
   description: "Base entity recogniser pipeline. (Controller)"
   transform:
-    cmd: ["python3", "EntityRecogniserPipeline.py"]
+    cmd: ["python3", "EntityRecognizerPipeline.py"]
     image: $(BASE_ENTITY_RECOGNISER_IMAGE)
     env:
       - name: SERVICE_URL_BASE
@@ -25,5 +25,4 @@ spec:
       glob: "/*/(*).jsonl"
       branch: "master"
 
-  egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-base-entity-recogniser"
-  enable_stats: false
+  enable_stats: true
