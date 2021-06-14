@@ -6,6 +6,7 @@ configMapGenerator:
   - pachyderm-controller.properties
   name: pachyderm-controller-config
 resources:
+- benchmark-db.yaml
 - pachyderm-core.yaml
 - pachctl-internal-role.yaml
 - pachd-internal-lb.yaml
