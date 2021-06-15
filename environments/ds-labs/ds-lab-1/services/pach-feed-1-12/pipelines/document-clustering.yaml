@@ -22,7 +22,6 @@ spec:
         value: "/pfs/doc2vec-generator"
       - name: OUTPUT_REPO
         value: "/pfs/out"
-
   input:
     join:
       - repo: "doc-standardisation"
