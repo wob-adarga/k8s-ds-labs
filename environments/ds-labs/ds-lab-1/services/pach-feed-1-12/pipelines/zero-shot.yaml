@@ -17,13 +17,13 @@ spec:
       - name: LABELS_PATH
         value: "/pfs/text-classification-labels/PMESII_labels.json"
       - name: INPUT_REPO
-        value: "/pfs/clean-ingress-feed"
+        value: "/pfs/doc-standardisation"
       - name: OUTPUT_REPO
         value: "/pfs/out"
 
   input:
     cross:
-      - repo: "clean-ingress-feed"
+      - repo: "doc-standardisation"
         glob: "/*/*"
         branch: "master"
 
