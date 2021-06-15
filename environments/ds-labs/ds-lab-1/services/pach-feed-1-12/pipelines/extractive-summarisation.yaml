@@ -15,12 +15,12 @@ spec:
       - name: SERVICE_ENDPOINT
         value: "api/v1.0/predictions"
       - name: INPUT_REPO
-        value: "/pfs/clean-ingress-feed"
+        value: "/pfs/doc-standardisation"
       - name: OUTPUT_REPO
         value: "/pfs/out"
   input:
     pfs:
-      repo: "clean-ingress-feed"
+      repo: "doc-standardisation"
       glob: "/*/*"
       branch: "master"
 
