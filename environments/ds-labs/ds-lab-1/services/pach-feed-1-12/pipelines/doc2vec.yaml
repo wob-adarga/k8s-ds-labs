@@ -3,6 +3,8 @@ apiVersion: adarga.ai/v1alpha1
 metadata:
   name: doc2vec-generator
   namespace: pach-feed-1-12
+  annotations:
+    notifications.argoproj.io/subscribe.on-pipeline-update-error.slack: ds-labs
 spec:
   name: doc2vec-generator
   description: "Doc2Vec generator pipeline. Calls Seldon, Returns embedding. (Controller)"
