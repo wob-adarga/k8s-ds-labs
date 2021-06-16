@@ -7,7 +7,7 @@ spec:
   name: future-signals-classifier
   description: "Future signals classification pipeline. (Controller)"
   transform:
-    cmd: ["python3", "ZeroShotClassifierPipeline.py"]
+    cmd: ["python3", "FutureSignalsClassifierPipeline.py"]
     image: $(FUTURE_SIGNALS_IMAGE)
     env:
       - name: SERVICE_URL_BASE
@@ -15,20 +15,21 @@ spec:
       - name: SERVICE_ENDPOINT
         value: "api/v1.0/predictions"
       - name: SENTENCES_REPO
-        value: "/pfs/text-classification-labels/PMESII_labels.json"
+        value: "/pfs/sentence-extraction"
       - name: EVENTS_REPO
-        value: "/pfs/clean-ingress-feed"
+        value: "/pfs/event-detector"
       - name: OUTPUT_REPO
         value: "/pfs/out"
 
   input:
     join:
       - repo: "sentence-extraction"
-        glob: "/*/(*).jsonl"
+        glob: "/*/*"
         branch: "master"
 
       - repo: "event-detector"
-        glob: "/*/(*).jsonl"
+        glob: "/*/*"
         branch: "master"
 
-  enable_stats: true
+  egress: "s3://adarga-ds-lab-1-pachyderm-egress/feed-future-signals-classifier"
+  enable_stats: false
