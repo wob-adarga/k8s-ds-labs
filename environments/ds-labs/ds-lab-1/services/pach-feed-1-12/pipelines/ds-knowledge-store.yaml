@@ -10,7 +10,7 @@ spec:
   description: "bertee weights model to ecr publishing"
   transform:
     cmd: ["/publish-model.sh"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-publish-model:1.26.0
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-publish-model:1.27.0
 
     env:
       - name: AMW_DECRIPTION
@@ -28,216 +28,302 @@ spec:
 kind: PachydermPipeline
 apiVersion: adarga.ai/v1alpha1
 metadata:
-  name: document-standardisation
-  namespace: pach-feed-1-12
+  name: "document-standardisation"
+  namespace: "pach-feed-1-12"
 spec:
-  name: document-standardisation
-  description: document-standardisation ds-knowledge-store transform
+  name: "document-standardisation"
+  description: "document-standardisation ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "document-standardisation"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.26.0
-
-    
+    image: "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.0\n"
   input:
-    pfs:
-      repo: ingress-dev-1-spout
+    pfs:    
+      repo: "document-standardisation"
       glob: "/*/*"
       branch: "master"
-
   enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
 kind: PachydermPipeline
 apiVersion: adarga.ai/v1alpha1
 metadata:
-  name: sentence-extraction
-  namespace: pach-feed-1-12
+  name: "sentence-extraction"
+  namespace: "pach-feed-1-12"
 spec:
-  name: sentence-extraction
-  description: sentence-extraction ds-knowledge-store transform
+  name: "sentence-extraction"
+  description: "sentence-extraction ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "sentence-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.26.0
-
-    
+    image: "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.0\n"
     env:
       - name: SERVICE_URL_BASE
-        value: http://sentence-extraction-default.seldon.svc.cluster.local:8000
+        value: "http://sentence-extraction-default.seldon.svc.cluster.local:8000"
       - name: SERVICE_ENDPOINT
         value: "api/v1.0/predictions"
-    
   input:
-    pfs:
-      repo: document-standardisation
+    pfs:    
+      repo: "sentence-extraction"
       glob: "/*/*"
       branch: "master"
-
   enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
 kind: PachydermPipeline
 apiVersion: adarga.ai/v1alpha1
 metadata:
-  name: naive-event-detection
-  namespace: pach-feed-1-12
+  name: "naive-event-detection"
+  namespace: "pach-feed-1-12"
 spec:
-  name: naive-event-detection
-  description: naive-event-detection ds-knowledge-store transform
+  name: "naive-event-detection"
+  description: "naive-event-detection ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "naive-event-detection"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.26.0
-
-    
+    image: "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.0\n"
     env:
       - name: SERVICE_URL_BASE
-        value: http://naive-event-detection-default.seldon.svc.cluster.local:8000
+        value: "http://naive-event-detection-default.seldon.svc.cluster.local:8000"
       - name: SERVICE_ENDPOINT
         value: "api/v1.0/predictions"
-    
   input:
-    pfs:
-      repo: sentence-extraction
+    pfs:    
+      repo: "naive-event-detection"
       glob: "/*/*"
       branch: "master"
-
   enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
 kind: PachydermPipeline
 apiVersion: adarga.ai/v1alpha1
 metadata:
-  name: event-mention-coreference
-  namespace: pach-feed-1-12
+  name: "event-mention-coreference"
+  namespace: "pach-feed-1-12"
 spec:
-  name: event-mention-coreference
-  description: event-mention-coreference ds-knowledge-store transform
+  name: "event-mention-coreference"
+  description: "event-mention-coreference ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "event-mention-coreference"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.26.0
-
-    
+    image: "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.0\n"
     env:
       - name: SERVICE_URL_BASE
-        value: http://event-mention-coreference-default.seldon.svc.cluster.local:8000
+        value: "http://event-mention-coreference-default.seldon.svc.cluster.local:8000"
       - name: SERVICE_ENDPOINT
         value: "api/v1.0/predictions"
-    
   input:
-    pfs:
-      repo: event-detection
+    pfs:    
+      repo: "event-mention-coreference"
       glob: "/*/*"
       branch: "master"
-
   enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
 kind: PachydermPipeline
 apiVersion: adarga.ai/v1alpha1
 metadata:
-  name: mention-extraction
-  namespace: pach-feed-1-12
+  name: "mention-extraction"
+  namespace: "pach-feed-1-12"
 spec:
-  name: mention-extraction
-  description: mention-extraction ds-knowledge-store transform
+  name: "mention-extraction"
+  description: "mention-extraction ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "mention-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.26.0
-
-    
+    image: "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.0\n"
     env:
       - name: SERVICE_URL_BASE
-        value: http://mention-extraction-default.seldon.svc.cluster.local:8000
+        value: "http://mention-extraction-default.seldon.svc.cluster.local:8000"
       - name: SERVICE_ENDPOINT
         value: "api/v1.0/predictions"
-    
   input:
-    pfs:
-      repo: sentence-extraction
+    pfs:    
+      repo: "mention-extraction"
       glob: "/*/*"
       branch: "master"
-
   enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
 kind: PachydermPipeline
 apiVersion: adarga.ai/v1alpha1
 metadata:
-  name: mention-coreference
-  namespace: pach-feed-1-12
+  name: "mention-coreference"
+  namespace: "pach-feed-1-12"
 spec:
-  name: mention-coreference
-  description: mention-coreference ds-knowledge-store transform
+  name: "mention-coreference"
+  description: "mention-coreference ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "mention-coreference"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.26.0
-
-    
+    image: "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.0\n"
     env:
       - name: SERVICE_URL_BASE
-        value: http://mention-coreference-default.seldon.svc.cluster.local:8000
+        value: "http://mention-coreference-default.seldon.svc.cluster.local:8000"
       - name: SERVICE_ENDPOINT
         value: "api/v1.0/predictions"
-    
   input:
-    pfs:
-      repo: sentence-extraction
+    pfs:    
+      repo: "mention-coreference"
       glob: "/*/*"
       branch: "master"
-
   enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
 kind: PachydermPipeline
 apiVersion: adarga.ai/v1alpha1
 metadata:
-  name: mention-typing
-  namespace: pach-feed-1-12
+  name: "mention-typing"
+  namespace: "pach-feed-1-12"
 spec:
-  name: mention-typing
-  description: mention-typing ds-knowledge-store transform
+  name: "mention-typing"
+  description: "mention-typing ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "mention-typing"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.26.0
-
-    
+    image: "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.0\n"
     env:
       - name: SERVICE_URL_BASE
-        value: http://mention-typing-default.seldon.svc.cluster.local:8000
+        value: "http://mention-typing-default.seldon.svc.cluster.local:8000"
       - name: SERVICE_ENDPOINT
         value: "api/v1.0/predictions"
-    
   input:
-    pfs:
-      repo: sentence-extraction
+    pfs:    
+      repo: "mention-typing"
       glob: "/*/*"
       branch: "master"
-
   enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
 kind: PachydermPipeline
 apiVersion: adarga.ai/v1alpha1
 metadata:
-  name: svo-extraction
-  namespace: pach-feed-1-12
+  name: "svo-extraction"
+  namespace: "pach-feed-1-12"
 spec:
-  name: svo-extraction
-  description: svo-extraction ds-knowledge-store transform
+  name: "svo-extraction"
+  description: "svo-extraction ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "svo-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.26.0
-
-    
+    image: "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.0\n"
     env:
       - name: SERVICE_URL_BASE
-        value: http://svo-extraction-default.seldon.svc.cluster.local:8000
+        value: "http://svo-extraction-default.seldon.svc.cluster.local:8000"
       - name: SERVICE_ENDPOINT
         value: "api/v1.0/predictions"
-    
   input:
-    pfs:
-      repo: sentence-extraction
+    pfs:    
+      repo: "svo-extraction"
       glob: "/*/*"
       branch: "master"
-
+  enable_stats: true
+---
+# Source: ds-knowledge-store/templates/transform.yaml
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: "event-trigger-detection"
+  namespace: "pach-feed-1-12"
+spec:
+  name: "event-trigger-detection"
+  description: "event-trigger-detection ds-knowledge-store transform"
+  transform:
+    cmd: ["python3", "-m", "transforms", "event-trigger-detection"]
+    image: "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.0\n"
+    env:
+      - name: SERVICE_URL_BASE
+        value: "http://event-trigger-detection-default.seldon.svc.cluster.local:8000"
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+  input:
+    pfs:    
+      repo: "event-trigger-detection"
+      glob: "/*/*"
+      branch: "master"
+  enable_stats: true
+---
+# Source: ds-knowledge-store/templates/transform.yaml
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: "event-classification"
+  namespace: "pach-feed-1-12"
+spec:
+  name: "event-classification"
+  description: "event-classification ds-knowledge-store transform"
+  transform:
+    cmd: ["python3", "-m", "transforms", "event-classification"]
+    image: "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.0\n"
+    env:
+      - name: SERVICE_URL_BASE
+        value: "http://event-classification-default.seldon.svc.cluster.local:8000"
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+  input:
+    join:
+      - pfs:        
+          repo: "sentence-extraction"
+          glob: "/*/(*)"
+          branch: "master"
+          join_on: "$1"
+      - pfs:        
+          repo: "event-trigger-detection"
+          glob: "/*/(*)"
+          branch: "master"
+          join_on: "$1"
+  enable_stats: true
+---
+# Source: ds-knowledge-store/templates/transform.yaml
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: "event-argument-classification"
+  namespace: "pach-feed-1-12"
+spec:
+  name: "event-argument-classification"
+  description: "event-argument-classification ds-knowledge-store transform"
+  transform:
+    cmd: ["python3", "-m", "transforms", "event-argument-classification"]
+    image: "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.0\n"
+    env:
+      - name: SERVICE_URL_BASE
+        value: "http://event-argument-classification-default.seldon.svc.cluster.local:8000"
+      - name: SERVICE_ENDPOINT
+        value: "api/v1.0/predictions"
+  input:
+    join:
+      - pfs:        
+          repo: "sentence-extraction"
+          glob: "/*/(*)"
+          branch: "master"
+          join_on: "$1"
+      - pfs:        
+          repo: "mention-extraction"
+          glob: "/*/(*)"
+          branch: "master"
+          join_on: "$1"
+      - pfs:        
+          repo: "event-classification"
+          glob: "/*/(*)"
+          branch: "master"
+          join_on: "$1"
+  enable_stats: true
+---
+# Source: ds-knowledge-store/templates/transform.yaml
+kind: PachydermPipeline
+apiVersion: adarga.ai/v1alpha1
+metadata:
+  name: "event-mention-extraction"
+  namespace: "pach-feed-1-12"
+spec:
+  name: "event-mention-extraction"
+  description: "event-mention-extraction ds-knowledge-store transform"
+  transform:
+    cmd: ["python3", "-m", "transforms", "event-mention-extraction"]
+    image: "eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.0\n"
+  input:
+    join:
+      - pfs:        
+          repo: "event-classification"
+          glob: "/*/(*)"
+          branch: "master"
+          join_on: "$1"
+      - pfs:        
+          repo: "event-argument-classification"
+          glob: "/*/(*)"
+          branch: "master"
+          join_on: "$1"
   enable_stats: true
