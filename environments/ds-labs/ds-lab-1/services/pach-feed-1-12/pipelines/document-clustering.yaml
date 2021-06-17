@@ -15,7 +15,7 @@ spec:
       - name: SERVICE_ENDPOINT
         value: "api/v1.0/predictions"
       - name: DOCUMENT_REPO
-        value: "/pfs/doc-standardisation"
+        value: "/pfs/document-standardisation"
       - name: MENTIONS_REPO
         value: "/pfs/mention-typer"
       - name: DOC2VEC_REPO
@@ -24,7 +24,7 @@ spec:
         value: "/pfs/out"
   input:
     join:
-      - repo: "doc-standardisation"
+      - repo: "document-standardisation"
         glob: "/*/(*)"
         branch: "master"
       - repo: "doc2vec-generator"
