@@ -10,7 +10,7 @@ spec:
   description: "bertee weights model to ecr publishing"
   transform:
     cmd: ["/publish-model.sh"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-publish-model:1.27.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-publish-model:1.27.2
     env:
       - name: AMW_DECRIPTION
         value: "Adarga trained weights for bertee classification"
@@ -34,7 +34,7 @@ spec:
   description: "document-standardisation ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "document-standardisation"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.2
   input:
     pfs:    
       repo: document-standardisation
@@ -53,7 +53,7 @@ spec:
   description: "sentence-extraction ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "sentence-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.2
     env:
       - name: SERVICE_URL_BASE
         value: "http://sentence-extraction-default.seldon.svc.cluster.local:8000"
@@ -77,7 +77,7 @@ spec:
   description: "naive-event-detection ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "naive-event-detection"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.2
     env:
       - name: SERVICE_URL_BASE
         value: "http://naive-event-detection-default.seldon.svc.cluster.local:8000"
@@ -101,7 +101,7 @@ spec:
   description: "event-mention-coreference ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "event-mention-coreference"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.2
     env:
       - name: SERVICE_URL_BASE
         value: "http://event-mention-coreference-default.seldon.svc.cluster.local:8000"
@@ -125,7 +125,7 @@ spec:
   description: "mention-extraction ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "mention-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.2
     env:
       - name: SERVICE_URL_BASE
         value: "http://mention-extraction-default.seldon.svc.cluster.local:8000"
@@ -149,7 +149,7 @@ spec:
   description: "mention-coreference ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "mention-coreference"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.2
     env:
       - name: SERVICE_URL_BASE
         value: "http://mention-coreference-default.seldon.svc.cluster.local:8000"
@@ -173,7 +173,7 @@ spec:
   description: "mention-typing ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "mention-typing"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.2
     env:
       - name: SERVICE_URL_BASE
         value: "http://mention-typing-default.seldon.svc.cluster.local:8000"
@@ -197,7 +197,7 @@ spec:
   description: "svo-extraction ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "svo-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.2
     env:
       - name: SERVICE_URL_BASE
         value: "http://svo-extraction-default.seldon.svc.cluster.local:8000"
@@ -221,7 +221,7 @@ spec:
   description: "event-trigger-detection ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "event-trigger-detection"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.2
     env:
       - name: SERVICE_URL_BASE
         value: "http://event-trigger-detection-default.seldon.svc.cluster.local:8000"
@@ -245,7 +245,7 @@ spec:
   description: "event-classification ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "event-classification"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.2
     env:
       - name: SERVICE_URL_BASE
         value: "http://event-classification-default.seldon.svc.cluster.local:8000"
@@ -253,16 +253,14 @@ spec:
         value: "api/v1.0/predictions"
   input:
     join:
-      - pfs:        
+      -        
           repo: sentence-extraction
           glob: /*/(*)
           branch: master
-          join_on: $1
-      - pfs:        
+      -        
           repo: event-trigger-detection
           glob: /*/(*)
           branch: master
-          join_on: $1
   enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
@@ -276,7 +274,7 @@ spec:
   description: "event-argument-classification ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "event-argument-classification"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.2
     env:
       - name: SERVICE_URL_BASE
         value: "http://event-argument-classification-default.seldon.svc.cluster.local:8000"
@@ -284,21 +282,18 @@ spec:
         value: "api/v1.0/predictions"
   input:
     join:
-      - pfs:        
+      -        
           repo: sentence-extraction
           glob: /*/(*)
           branch: master
-          join_on: $1
-      - pfs:        
+      -        
           repo: mention-extraction
           glob: /*/(*)
           branch: master
-          join_on: $1
-      - pfs:        
+      -        
           repo: event-classification
           glob: /*/(*)
           branch: master
-          join_on: $1
   enable_stats: true
 ---
 # Source: ds-knowledge-store/templates/transform.yaml
@@ -312,17 +307,15 @@ spec:
   description: "event-mention-extraction ds-knowledge-store transform"
   transform:
     cmd: ["python3", "-m", "transforms", "event-mention-extraction"]
-    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.1
+    image: eu.gcr.io/adarga-docker/ds-knowledge-store-transform:1.27.2
   input:
     join:
-      - pfs:        
+      -        
           repo: event-classification
           glob: /*/(*)
           branch: master
-          join_on: $1
-      - pfs:        
+      -        
           repo: event-argument-classification
           glob: /*/(*)
           branch: master
-          join_on: $1
   enable_stats: true
